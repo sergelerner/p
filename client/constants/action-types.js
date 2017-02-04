@@ -1,0 +1,1 @@
+export const RECIEVE_VOUCHERS = 'RECIEVE_VOUCHERS';
