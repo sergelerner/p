@@ -9,8 +9,10 @@ export default function (state = initialState, action) {
   switch (action.type) {
 
     case actionTypes.RECIEVE_VOUCHERS: {
+      const { vouchersRaw } = action;
       return u({
         hasRecievedVouchers: true,
+        vouchersRaw,
       }, state);
     }
 

@@ -1,6 +1,8 @@
 import Tabletop from 'tabletop';
 import * as types from '../constants/action-types.js';
 
+import get from 'lodash/get';
+
 export const loadSheet = () => (dispatch) => {
 
   Tabletop.init({
@@ -10,7 +12,7 @@ export const loadSheet = () => (dispatch) => {
 
       dispatch({
         type: types.RECIEVE_VOUCHERS,
-        result,
+        vouchersRaw: get(result, ['vouchers', 'elements']),
       });
     },
   });
