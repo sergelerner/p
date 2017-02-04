@@ -34,7 +34,6 @@ class Tour extends Component {
     const { content } = this.state;
     return (
       <main>
-        <h1>Hello World!!!</h1>
         <div dangerouslySetInnerHTML={{ __html: content }}></div>
       </main>
     );
