@@ -12,7 +12,7 @@ export default function (state = initialState, action) {
       const { vouchersRaw } = action;
       return u({
         hasRecievedVouchers: true,
-        vouchersRaw,
+        vouchers: vouchersRaw,
       }, state);
     }
 
