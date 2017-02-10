@@ -33,11 +33,11 @@ class Vouchers extends Component {
               width={1000}
               height={500}>
               {
-                head.map(({ displayName, colName, isFixed }) => (
+                head.map(({ displayName, colName, isFixed, width }) => (
                   <Column
                     key={colName}
                     fixed={isFixed}
-                    width={200}
+                    width={width || 200}
                     header={<Cell>{ displayName }</Cell>}
                     cell={
                       (props) => (

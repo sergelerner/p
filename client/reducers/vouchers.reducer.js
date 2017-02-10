@@ -5,7 +5,6 @@ import pullAt from 'lodash/head';
 import drop from 'lodash/drop';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
-import assign from 'lodash/assign';
 
 const initialState = {
   isReady: false,
@@ -25,27 +24,23 @@ const createHead = (firstRow) => {
     'notes',
   ];
 
+  const settings = {
+    name: {
+      isFixed: true,
+      width: 300,
+    },
+    price: {
+      width: 100,
+    },
+  };
+
   const supportedFirstRow = pick(firstRow, supportedColumns);
 
-  const head = map(supportedFirstRow, (val, key) => {
-    let base = {
-      colName: key,
-      displayName: val,
-    };
-
-    switch (key) {
-      case 'name': {
-        base = assign({}, base, {
-          isFixed: true,
-        });
-        break;
-      }
-      default:
-        break;
-    }
-
-    return base;
-  });
+  const head = map(supportedFirstRow, (val, key) => ({
+    colName: key,
+    displayName: val,
+    ...settings[key],
+  }));
 
   return head;
 };
