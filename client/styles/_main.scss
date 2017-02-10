@@ -4,8 +4,15 @@
   justify-content: center;
   align-content: center;
 
+  padding: 50px;
+}
+
+.main-header {
+  margin-bottom: 50px;
+  
   @at-root #{&}__title {
     text-align: center;
     color: $color-a-2;
+    font-size: 32px;
   }
 }

@@ -1,0 +1,62 @@
+%unbutton {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+@mixin button($bg, $color: $color-white, $pad: 8px 20px) {
+  @extend %unbutton;
+
+  background: $bg;
+  color: $color;
+  border-radius: 3px;
+  padding: $pad;
+
+  text-transform: lowercase;
+  font-variant: small-caps;
+  font-weight: 100;
+
+  &:hover {
+    background: darken($bg, 20%);
+  }
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filter {
+  padding: 15px 0;
+  border-bottom: solid 1px $color-a-5;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  @at-root #{&}__name {
+    margin-right: 10px;
+
+    font-size: 14px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+
+    &:after {
+      content: ":";
+    }
+  }
+
+  @at-root #{&}__list {
+    display: flex;
+  }
+
+  @at-root #{&}__item {
+    margin-right: 10px;
+
+    button {
+      @include button($color-a-3, $color-a-1);
+    }
+  }
+}

@@ -8,13 +8,13 @@ import get from 'lodash/get';
 const Filter = ({ filter, userFilter }) => {
   const { filterName, displayName, component, list } = filter;
   return (
-    <div>
-      <h3>{ displayName }</h3>
-      <ul className="list">
+    <div className={`filter ${filterName}`}>
+      <h3 className="filter__name">{ displayName }</h3>
+      <ul className="filter__list">
         {
           list.map(({ name }) => (
             <li
-              className="list__item"
+              className="filter__item"
               key={name}>
               <button
                 onClick={() => userFilter(filterName, name)}>

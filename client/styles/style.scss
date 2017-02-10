@@ -1,10 +1,9 @@
-@import 'lib/fixed-data-table';
+@import 'reset';
 @import 'color';
 @import 'type';
 
 @import 'main';
+@import 'filters';
 @import 'vouchers';
 
-h1 {
-  color: red;
-}
+@import 'lib/fixed-data-table';
