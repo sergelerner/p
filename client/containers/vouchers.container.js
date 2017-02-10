@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Table, Column, Cell } from 'fixed-data-table';
+import { connect } from 'react-redux';
+
+import get from 'lodash/get';
 
 class Vouchers extends Component {
   constructor(props) {
@@ -17,34 +20,54 @@ class Vouchers extends Component {
   }
 
   render() {
+    const { isReady, head, body } = this.props;
+    const { myTableData } = this.state;
     return (
-      <Table
-        rowsCount={this.state.myTableData.length}
-        rowHeight={50}
-        headerHeight={50}
-        width={1000}
-        height={500}>
-        <Column
-          header={<Cell>Name</Cell>}
-          cell={props => (
-            <Cell {...props}>
-              {this.state.myTableData[props.rowIndex].name}
-            </Cell>
-          )}
-          width={200}
-        />
-        <Column
-          header={<Cell>Email</Cell>}
-          cell={props => (
-            <Cell {...props}>
-              {this.state.myTableData[props.rowIndex].name}
-            </Cell>
-          )}
-          width={200}
-        />
-      </Table>
+      <section className="vouchers">
+        {
+          isReady && (
+            <Table
+              rowsCount={ myTableData.length }
+              rowHeight={50}
+              headerHeight={50}
+              width={1000}
+              height={500}>
+              {
+                head.map(({ displayName, colName, isFixed }) => (
+                  <Column
+                    key={colName}
+                    fixed={isFixed}
+                    width={200}
+                    header={<Cell>{ displayName }</Cell>}
+                    cell={
+                      (props) => (
+                        <Cell { ...props }>
+                          { body[props.rowIndex][colName] }
+                        </Cell>
+                      )
+                    }
+                  />
+                ))
+              }
+            </Table>
+          )
+        }
+      </section>
     );
   }
 }
 
-export default Vouchers;
+Vouchers.propTypes = {
+  isReady: PropTypes.bool.isRequired,
+  head: PropTypes.array,
+  body: PropTypes.array,
+};
+
+const mapStateToProps = (state) => ({
+  isReady: get(state, ['vouchers', 'isReady']),
+  head: get(state, ['vouchers', 'head']),
+  body: get(state, ['vouchers', 'body']),
+
+});
+
+export default connect(mapStateToProps)(Vouchers);
