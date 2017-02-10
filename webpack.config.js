@@ -63,7 +63,7 @@ module.exports = {
   output: {
     path: staticsPath,
     filename: (isDeploy) ? 'main.[hash].js' : 'main.js',
-    publicPath: '/',
+    publicPath: '/puteshestvennik',
   },
   module: {
     rules: [
