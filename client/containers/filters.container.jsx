@@ -1,22 +1,24 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import get from 'lodash/get';
-import keyBy from 'lodash/keyBy';
+import { filterBy } from '../actions/filter.actions.js';
 
-const Filter = ({ filter }) => {
+import get from 'lodash/get';
+
+const Filter = ({ filter, userFilter }) => {
   const { filterName, displayName, component, list } = filter;
   return (
     <div>
       <h3>{ displayName }</h3>
       <ul className="list">
         {
-          list.map((item) => (
+          list.map(({ name }) => (
             <li
               className="list__item"
-              key={item}>
-              <button>
-                { item }
+              key={name}>
+              <button
+                onClick={() => userFilter(filterName, name)}>
+                { name }
               </button>
             </li>
           ))
@@ -32,16 +34,16 @@ Filter.propTypes = {
     component: PropTypes.string,
     list: PropTypes.array,
   }),
+  userFilter: PropTypes.func.isRequired,
 };
 
 class Filters extends Component {
   render() {
-    const { isReady, filters } = this.props;
-    const { company } = filters;
+    const { isReady, company, userFilterBy } = this.props;
     return (
       <section className="filters">
         {
-          isReady && <Filter filter={company} />
+          isReady && <Filter filter={company} userFilter={userFilterBy}/>
         }
       </section>
     );
@@ -56,23 +58,20 @@ const filterShapeType = PropTypes.shape({
 });
 
 Filters.propTypes = {
+  userFilterBy: PropTypes.func.isRequired,
   isReady: PropTypes.bool.isRequired,
-  filters: PropTypes.shape({
-    company: filterShapeType,
-    country: filterShapeType,
-    city: filterShapeType,
-    category1: filterShapeType,
-    category2: filterShapeType,
-    category3: filterShapeType,
-    guide: filterShapeType,
-    month: filterShapeType,
-    status: filterShapeType,
-  }),
+  company: filterShapeType,
 };
 
 const mapStateToProps = (state) => ({
   isReady: get(state, ['filters', 'isReady']),
-  filters: keyBy(get(state, ['filters', 'list']), 'filterName'),
+  company: get(state, ['filters', 'company']),
 });
 
-export default connect(mapStateToProps)(Filters);
+const mapDispatchToProps = (dispatch) => ({
+  userFilterBy: (filterName, value) => {
+    dispatch(filterBy(filterName, value));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);

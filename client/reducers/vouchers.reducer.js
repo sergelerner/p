@@ -5,6 +5,7 @@ import pullAt from 'lodash/head';
 import drop from 'lodash/drop';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
+import filter from 'lodash/filter';
 
 const initialState = {
   isReady: false,
@@ -67,7 +68,21 @@ export default function (state = initialState, action) {
       return u({
         isReady: true,
         head,
+        all: body,
         body,
+      }, state);
+    }
+
+    case actionTypes.TOGGLE_FILTER: {
+      const { filterName, value } = action;
+      const { filters, all } = state;
+
+      return u({
+        filters: {
+          ...filters,
+          [filterName]: value,
+        },
+        body: filter(all, (voucher) => voucher[filterName] === value),
       }, state);
     }
 

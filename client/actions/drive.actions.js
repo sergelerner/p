@@ -1,5 +1,5 @@
 import Tabletop from 'tabletop';
-import * as types from '../constants/action-types.js';
+import * as actionTypes from '../constants/action-types.js';
 
 import get from 'lodash/get';
 
@@ -11,12 +11,12 @@ export const loadSheet = () => (dispatch) => {
       console.log('table result', result);
 
       dispatch({
-        type: types.RECIEVE_VOUCHERS,
+        type: actionTypes.RECIEVE_VOUCHERS,
         vouchersRaw: get(result, ['vouchers', 'elements']),
       });
 
       dispatch({
-        type: types.RECIEVE_FILTERS,
+        type: actionTypes.RECIEVE_FILTERS,
         filtersRaw: get(result, ['filters', 'elements']),
       });
     },

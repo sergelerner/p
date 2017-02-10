@@ -12,10 +12,10 @@ import pullAt from 'lodash/head';
 import drop from 'lodash/drop';
 import reduce from 'lodash/reduce';
 import compact from 'lodash/compact';
+import keyBy from 'lodash/keyBy';
 
 const initialState = {
   isReady: false,
-  list: [],
 };
 
 const supportedFilters = [
@@ -62,7 +62,11 @@ const createFilter = (filterName, filterTypes, filterLists) => {
   };
 
   const list = reduce(filterLists, (acc, item) => {
-    acc.push(get(item, [filterName]));
+    if (item[filterName]) {
+      acc.push({
+        name: get(item, [filterName]),
+      });
+    }
     return acc;
   }, []);
 
@@ -87,7 +91,7 @@ export default function (state = initialState, action) {
 
       return u({
         isReady: true,
-        list: filters,
+        ...keyBy(filters, 'filterName'),
       }, state);
     }
 
