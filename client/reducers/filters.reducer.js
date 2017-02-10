@@ -12,11 +12,10 @@ import pullAt from 'lodash/head';
 import drop from 'lodash/drop';
 import reduce from 'lodash/reduce';
 import compact from 'lodash/compact';
-import keyBy from 'lodash/keyBy';
 
 const initialState = {
   isReady: false,
-  company: {},
+  list: [],
 };
 
 const supportedFilters = [
@@ -86,11 +85,9 @@ export default function (state = initialState, action) {
       const filters = map(supportedFilters, (filterName) =>
         createFilter(filterName, firstRow, otherRows));
 
-      const filtersMap = keyBy(filters, 'filterName');
-
       return u({
         isReady: true,
-        ...filtersMap,
+        list: filters,
       }, state);
     }
 
