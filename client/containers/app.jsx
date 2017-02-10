@@ -6,8 +6,8 @@ class App extends Component {
   render() {
     return (
       <main className="main">
-        <header className="main-header">
-          <h1 className="main-header__title">С уважением, Ваш и в дальнейшем, Лев Путешественник</h1>
+        <header className="header">
+          <h1 className="header__title">С уважением, Ваш и в дальнейшем, Лев Путешественник</h1>
         </header>
         <Filters />
         <Vouchers />

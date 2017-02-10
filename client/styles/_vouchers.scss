@@ -13,6 +13,10 @@
   }
 
   @at-root #{&}__cell {
+    .content {
+      font-size: 14px;
+    }
+
     .price {
       span {
         display: block;

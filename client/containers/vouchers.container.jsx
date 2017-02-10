@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { Table, Column, Cell } from 'fixed-data-table';
 import { connect } from 'react-redux';
 
+import classNames from 'classnames';
+
 import get from 'lodash/get';
 
 class Vouchers extends Component {
@@ -12,13 +14,13 @@ class Vouchers extends Component {
   }
 
   createCellContent(type, content) {
-    const d = (<span className={type}>{ content }</span>);
+    const d = (<span>{ content }</span>);
     const map = {
       name: (
-        <span className={type}>{ content }</span>
+        <span>{ content }</span>
       ),
       price: (
-        <div className={type}>
+        <div>
           {
             content && content.split('|').map((item, i) => (
               <span key={i}>{ item }</span>
@@ -28,9 +30,11 @@ class Vouchers extends Component {
       ),
     };
 
+    const cellProps = { className: classNames('content', type) };
+
     return map[type]
-      ? React.cloneElement(map[type])
-      : React.cloneElement(d);
+      ? React.cloneElement(map[type], cellProps)
+      : React.cloneElement(d, cellProps);
   }
 
   render() {
@@ -43,7 +47,7 @@ class Vouchers extends Component {
               rowsCount={ body.length }
               rowHeight={50}
               headerHeight={50}
-              width={1100}
+              width={1200}
               height={500}>
               {
                 head.map(({ displayName, colName, isFixed, width }) => (

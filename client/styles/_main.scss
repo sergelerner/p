@@ -2,17 +2,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 
   padding: 50px;
 }
 
-.main-header {
-  margin-bottom: 50px;
-  
+.header {
+  font-family: $headingFont;
+  margin-bottom: 30px;
+
   @at-root #{&}__title {
     text-align: center;
     color: $color-a-2;
-    font-size: 32px;
+    font-size: 26px;
   }
 }

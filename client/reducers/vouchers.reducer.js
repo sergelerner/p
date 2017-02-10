@@ -30,11 +30,20 @@ const createHead = (firstRow) => {
       isFixed: true,
       width: 300,
     },
+    company: {
+      width: 150,
+    },
+    status: {
+      width: 150,
+    },
     price: {
       width: 100,
     },
     departure: {
       width: 150,
+    },
+    notes: {
+      width: 300,
     },
   };
 
@@ -52,7 +61,7 @@ const createHead = (firstRow) => {
 const createBody = (rows) => {
   const body = rows.map((row) => ({
     ...row,
-    price: row.price, //`${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
+    price: `${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
   }));
 
   return body;

@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab:300');
 
 $default-font-size: 16px;
+
 $contnetFont: 'Open Sans', sans-serif;
+$headingFont: 'Roboto Slab', serif;
 
 @function rem($target, $context: $default-font-size) {
 	@if $target == 0 { @return 0 }
