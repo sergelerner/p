@@ -25,7 +25,7 @@ const handleLandOnHome = ({ dispatch }) => (nextState) => {
 ReactDOM.render(
   <Provider store={Store}>
     <Router history={history}>
-      <Route path="/" component={App} onEnter={handleLandOnHome(Store)}/>
+      <Route path="*" component={App} onEnter={handleLandOnHome(Store)}/>
     </Router>
   </Provider>
   ,
