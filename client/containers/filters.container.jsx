@@ -39,11 +39,16 @@ Filter.propTypes = {
 
 class Filters extends Component {
   render() {
-    const { isReady, company, userFilterBy } = this.props;
+    const { isReady, company, status, userFilterBy } = this.props;
     return (
       <section className="filters">
         {
-          isReady && <Filter filter={company} userFilter={userFilterBy}/>
+          isReady && (
+            <div>
+              <Filter filter={company} userFilter={userFilterBy}/>
+              <Filter filter={status} userFilter={userFilterBy}/>
+            </div>
+          )
         }
       </section>
     );
@@ -61,11 +66,13 @@ Filters.propTypes = {
   userFilterBy: PropTypes.func.isRequired,
   isReady: PropTypes.bool.isRequired,
   company: filterShapeType,
+  status: filterShapeType,
 };
 
 const mapStateToProps = (state) => ({
   isReady: get(state, ['filters', 'isReady']),
   company: get(state, ['filters', 'company']),
+  status: get(state, ['filters', 'status']),
 });
 
 const mapDispatchToProps = (dispatch) => ({

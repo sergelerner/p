@@ -14,6 +14,7 @@ const initialState = {
 const supportedColumns = [
   'name',
   'company',
+  'status',
   'departure',
   'arrival',
   'price',
@@ -49,7 +50,7 @@ const createHead = (firstRow) => {
 const createBody = (rows) => {
   const body = rows.map((row) => ({
     ...row,
-    price: `${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
+    price: row.price, //`${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
   }));
 
   return body;
@@ -76,13 +77,14 @@ export default function (state = initialState, action) {
     case actionTypes.TOGGLE_FILTER: {
       const { filterName, value } = action;
       const { filters, all } = state;
+      const updatedFilters = {
+        ...filters,
+        [filterName]: value,
+      };
 
       return u({
-        filters: {
-          ...filters,
-          [filterName]: value,
-        },
-        body: filter(all, (voucher) => voucher[filterName] === value),
+        filters: updatedFilters,
+        body: filter(all, updatedFilters),
       }, state);
     }
 
