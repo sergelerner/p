@@ -21,7 +21,7 @@ if (isDeploy) {
   if (deployTarget === 'STAGING_SITE_URL') {
     settings = require('./settings-stg.json');
   } else if (deployTarget === 'PRODUCTION_SITE_URL') {
-    settings = require('./settings-prod-tmp1.json');
+    settings = require('./settings-prod.json');
   } else {
     throw "Unsupported deploy target: " + deployTarget;
   }
@@ -120,14 +120,14 @@ module.exports = {
         minimize: true,
         debug: false,
       }),
-      new S3Plugin({
-        s3Options: {
-          region: 'us-west-2',
-        },
-        s3UploadOptions: {
-          Bucket: bucket,
-        },
-      }),
+      // new S3Plugin({
+      //   s3Options: {
+      //     region: 'us-west-2',
+      //   },
+      //   s3UploadOptions: {
+      //     Bucket: bucket,
+      //   },
+      // }),
     ]
     : [
       ...plugins,
