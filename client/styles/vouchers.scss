@@ -1,0 +1,13 @@
+
+.vouchers {
+    @at-root #{&}__cell {
+      .price {
+        span {
+          display: block;
+        }
+        span:first-child {
+          text-decoration: line-through;
+        }
+      }
+    }
+}

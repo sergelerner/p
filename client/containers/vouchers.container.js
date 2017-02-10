@@ -7,27 +7,40 @@ import get from 'lodash/get';
 class Vouchers extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      myTableData: [
-        { name: 'Rylan', email: 'Angelita_Weimann42@gmail.com' },
-        { name: 'Amelia', email: 'Dexter.Trantow57@hotmail.com' },
-        { name: 'Estevan', email: 'Aimee7@hotmail.com' },
-        { name: 'Florence', email: 'Jarrod.Bernier13@yahoo.com' },
-        { name: 'Tressa', email: 'Yadira1@hotmail.com' },
-      ],
     };
+  }
+
+  createCellContent(type, content) {
+    const d = (<span className={type}>{ content }</span>);
+    const map = {
+      name: (
+        <span className={type}>{ content }</span>
+      ),
+      price: (
+        <div className={type}>
+          {
+            content && content.split('|').map((item, i) => (
+              <span key={i}>{ item }</span>
+            ))
+          }
+        </div>
+      ),
+    };
+
+    return map[type]
+      ? React.cloneElement(map[type])
+      : React.cloneElement(d);
   }
 
   render() {
     const { isReady, head, body } = this.props;
-    const { myTableData } = this.state;
     return (
       <section className="vouchers">
         {
           isReady && (
             <Table
-              rowsCount={ myTableData.length }
+              rowsCount={ body.length }
               rowHeight={50}
               headerHeight={50}
               width={1000}
@@ -41,8 +54,8 @@ class Vouchers extends Component {
                     header={<Cell>{ displayName }</Cell>}
                     cell={
                       (props) => (
-                        <Cell { ...props }>
-                          { body[props.rowIndex][colName] }
+                        <Cell className="vouchers__cell" { ...props }>
+                          { ::this.createCellContent(colName, body[props.rowIndex][colName]) }
                         </Cell>
                       )
                     }

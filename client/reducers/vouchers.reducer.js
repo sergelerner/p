@@ -10,20 +10,17 @@ const initialState = {
   isReady: false,
 };
 
-const createHead = (firstRow) => {
-  const supportedColumns = [
-    'name',
-    'company',
-    'departure',
-    'arrival',
-    'price',
-    'coin',
-    'discount',
-    'status',
-    'guide',
-    'notes',
-  ];
+const supportedColumns = [
+  'name',
+  'company',
+  'departure',
+  'arrival',
+  'price',
+  'guide',
+  'notes',
+];
 
+const createHead = (firstRow) => {
   const settings = {
     name: {
       isFixed: true,
@@ -45,6 +42,14 @@ const createHead = (firstRow) => {
   return head;
 };
 
+const createBody = (rows) => {
+  const body = rows.map((row) => ({
+    ...row,
+    price: `${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
+  }));
+
+  return body;
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -52,7 +57,8 @@ export default function (state = initialState, action) {
     case actionTypes.RECIEVE_VOUCHERS: {
       const { vouchersRaw } = action;
       const firstRow = pullAt(vouchersRaw, [1]);
-      const body = drop(vouchersRaw, [1]);
+      const otherRows = drop(vouchersRaw, [1]);
+      const body = createBody(otherRows);
       const head = createHead(firstRow);
 
       return u({
