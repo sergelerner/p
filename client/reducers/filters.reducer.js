@@ -1,4 +1,9 @@
 import * as actionTypes from '../constants/action-types.js';
+import {
+  LIST_COMP,
+  DROPDOWN_COMP,
+} from '../constants/filter-component-types.js';
+
 import u from 'updeep';
 
 import map from 'lodash/map';
@@ -29,31 +34,31 @@ const supportedFilters = [
 const createFilter = (filterName, filterTypes, filterLists) => {
   const settings = {
     company: {
-      component: 'list',
+      component: LIST_COMP,
     },
     country: {
-      component: 'dropdown',
+      component: DROPDOWN_COMP,
     },
     city: {
-      component: 'dropdown',
+      component: DROPDOWN_COMP,
     },
     category1: {
-      component: 'list',
+      component: LIST_COMP,
     },
     category2: {
-      component: 'list',
+      component: LIST_COMP,
     },
     category3: {
-      component: 'list',
+      component: LIST_COMP,
     },
     guide: {
-      component: 'dropdown',
+      component: DROPDOWN_COMP,
     },
     month: {
-      component: 'list',
+      component: LIST_COMP,
     },
     status: {
-      component: 'list',
+      component: LIST_COMP,
     },
   };
 
