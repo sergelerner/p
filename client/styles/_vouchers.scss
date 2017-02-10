@@ -1,0 +1,28 @@
+
+.vouchers {
+  font-family: $contnetFont;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  @at-root #{&}__head {
+    background: $color-a-5;
+    color: $color-a-3;
+    font-weight: 100;
+  }
+
+  @at-root #{&}__cell {
+    .price {
+      span {
+        display: block;
+      }
+      span:first-child {
+        text-decoration: line-through;
+      }
+      span:last-child {
+        color: $color-a-2;
+      }
+    }
+  }
+}

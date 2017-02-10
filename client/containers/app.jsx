@@ -4,8 +4,8 @@ import Vouchers from './vouchers.container.js';
 class App extends Component {
   render() {
     return (
-      <main>
-        <h1>Hello World!</h1>
+      <main className="main">
+        <h1 className="main__title">С уважением, Ваш и в дальнейшем, Лев Путешественник</h1>
         <Vouchers />
       </main>
     );

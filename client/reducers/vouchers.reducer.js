@@ -29,6 +29,9 @@ const createHead = (firstRow) => {
     price: {
       width: 100,
     },
+    departure: {
+      width: 150,
+    },
   };
 
   const supportedFirstRow = pick(firstRow, supportedColumns);

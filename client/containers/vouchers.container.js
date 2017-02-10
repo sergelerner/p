@@ -43,7 +43,7 @@ class Vouchers extends Component {
               rowsCount={ body.length }
               rowHeight={50}
               headerHeight={50}
-              width={1000}
+              width={1100}
               height={500}>
               {
                 head.map(({ displayName, colName, isFixed, width }) => (
@@ -51,7 +51,7 @@ class Vouchers extends Component {
                     key={colName}
                     fixed={isFixed}
                     width={width || 200}
-                    header={<Cell>{ displayName }</Cell>}
+                    header={<Cell className="vouchers__head">{ displayName }</Cell>}
                     cell={
                       (props) => (
                         <Cell className="vouchers__cell" { ...props }>

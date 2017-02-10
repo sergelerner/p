@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+$default-font-size: 16px;
+$contnetFont: 'Open Sans', sans-serif;
+
+@function rem($target, $context: $default-font-size) {
+	@if $target == 0 { @return 0 }
+	@return $target / $context + 0rem;
+}

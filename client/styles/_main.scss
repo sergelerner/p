@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+  @at-root #{&}__title {
+    text-align: center;
+    color: $color-a-2;
+  }
+}
