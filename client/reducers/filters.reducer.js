@@ -13,6 +13,7 @@ import drop from 'lodash/drop';
 import reduce from 'lodash/reduce';
 import compact from 'lodash/compact';
 import keyBy from 'lodash/keyBy';
+import assign from 'lodash/assign';
 
 const initialState = {
   isReady: false,
@@ -65,6 +66,7 @@ const createFilter = (filterName, filterTypes, filterLists) => {
     if (item[filterName]) {
       acc.push({
         name: get(item, [filterName]),
+        isActive: false,
       });
     }
     return acc;
@@ -92,6 +94,23 @@ export default function (state = initialState, action) {
       return u({
         isReady: true,
         ...keyBy(filters, 'filterName'),
+      }, state);
+    }
+
+    case actionTypes.TOGGLE_FILTER: {
+      const { filterName, value, isActive } = action;
+
+      const list = map(get(state, [filterName, 'list']), (filter) =>
+        (filter.name === value)
+          ? assign({}, filter, { isActive })
+          : assign({}, filter, { isActive: false })
+        );
+
+      return u({
+        [filterName]: (props) => ({
+          ...props,
+          list,
+        }),
       }, state);
     }
 

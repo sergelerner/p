@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 import { filterBy } from '../actions/filter.actions.js';
 
@@ -12,12 +13,12 @@ const Filter = ({ filter, userFilter }) => {
       <h3 className="filter__name">{ displayName }</h3>
       <ul className="filter__list">
         {
-          list.map(({ name }) => (
+          list.map(({ name, isActive }) => (
             <li
-              className="filter__item"
+              className={classNames('filter__item', { active: isActive })}
               key={name}>
               <button
-                onClick={() => userFilter(filterName, name)}>
+                onClick={() => userFilter(filterName, name, !isActive)}>
                 { name }
               </button>
             </li>
@@ -76,8 +77,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userFilterBy: (filterName, value) => {
-    dispatch(filterBy(filterName, value));
+  userFilterBy: (filterName, value, isActive) => {
+    dispatch(filterBy(filterName, value, isActive));
   },
 });
 

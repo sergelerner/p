@@ -6,6 +6,8 @@ import drop from 'lodash/drop';
 import map from 'lodash/map';
 import pick from 'lodash/pick';
 import filter from 'lodash/filter';
+import assign from 'lodash/assign';
+import omit from 'lodash/omit';
 
 const initialState = {
   isReady: false,
@@ -75,15 +77,16 @@ export default function (state = initialState, action) {
     }
 
     case actionTypes.TOGGLE_FILTER: {
-      const { filterName, value } = action;
+      const { filterName, value, isActive } = action;
       const { filters, all } = state;
-      const updatedFilters = {
-        ...filters,
-        [filterName]: value,
-      };
+
+      const updatedFilters =
+        (isActive)
+          ? assign({}, filters, { [filterName]: value })
+          : {};
 
       return u({
-        filters: updatedFilters,
+        filters: () => updatedFilters,
         body: filter(all, updatedFilters),
       }, state);
     }
