@@ -5,9 +5,11 @@ import get from 'lodash/get';
 
 export const loadSheet = () => (dispatch) => {
 
+  const key = process.env.SETTINGS.sheetKey;
+
   Tabletop.init({
-    key: process.env.SETTINGS.sheetKey,
-    callback: (result, tabletop) => {
+    key,
+    callback: (result, _tabletop) => {
       console.log('table result', result);
 
       dispatch({
