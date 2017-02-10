@@ -14,6 +14,11 @@ export const loadSheet = () => (dispatch) => {
         type: types.RECIEVE_VOUCHERS,
         vouchersRaw: get(result, ['vouchers', 'elements']),
       });
+
+      dispatch({
+        type: types.RECIEVE_FILTERS,
+        filtersRaw: get(result, ['filters', 'elements']),
+      });
     },
   });
 };
