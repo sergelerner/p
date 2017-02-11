@@ -26,6 +26,29 @@
 
 .filters {
   margin-bottom: 20px;
+
+  .group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .filter {
+      flex: 1;
+
+      &:first-child {
+        margin-right: 20px;
+      }
+
+      @at-root #{&}__name {
+        flex: 0;
+        min-width: 60px;
+      }
+
+      @at-root #{&}__select {
+        flex: 1;
+      }
+    }
+  }
 }
 
 .filter {

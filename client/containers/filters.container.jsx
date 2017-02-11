@@ -70,6 +70,7 @@ class Filters extends Component {
       isReady,
       country,
       company,
+      guide,
       status,
       userFilterBy,
     } = this.props;
@@ -80,7 +81,10 @@ class Filters extends Component {
             <div>
               <Filter filter={company} userFilter={userFilterBy}/>
               <Filter filter={status} userFilter={userFilterBy}/>
-              <Filter filter={country} userFilter={userFilterBy}/>
+              <div className="group">
+                <Filter filter={country} userFilter={userFilterBy}/>
+                <Filter filter={guide} userFilter={userFilterBy}/>
+              </div>
             </div>
           )
         }
@@ -102,6 +106,7 @@ Filters.propTypes = {
   company: filterShapeType,
   status: filterShapeType,
   country: filterShapeType,
+  guide: filterShapeType,
 };
 
 const mapStateToProps = (state) => ({
@@ -109,6 +114,7 @@ const mapStateToProps = (state) => ({
   company: get(state, ['filters', 'company']),
   status: get(state, ['filters', 'status']),
   country: get(state, ['filters', 'country']),
+  guide: get(state, ['filters', 'guide']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
