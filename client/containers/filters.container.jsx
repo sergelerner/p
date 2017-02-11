@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import Select from 'react-select';
+
+import SelectFilter from '../components/select-filter.jsx';
 
 import * as componentTypes from '../constants/filter-component-types.js';
 
@@ -38,14 +39,10 @@ const Filter = ({ filter, userFilter }) => {
 
             case componentTypes.DROPDOWN_COMP: {
               return (
-                <Select
-                    className="filter__select"
-                    placeholder="Где вы хотите путешествовать"
-                    labelKey={"name"}
-                    value=""
-                    options={list}
-                    onChange={(value) => userFilter(filterName, value.name, !value.isActive)}
-                />
+                <SelectFilter
+                  filterName={filterName}
+                  list={list}
+                  userFilter={userFilter}/>
               );
             }
 
