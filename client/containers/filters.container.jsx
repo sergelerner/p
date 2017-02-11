@@ -11,10 +11,9 @@ import { filterBy } from '../actions/filter.actions.js';
 import get from 'lodash/get';
 
 const Filter = ({ filter, userFilter }) => {
-  const { filterName, displayName, component, list } = filter;
+  const { filterName, displayName, placeholder, component, list } = filter;
   return (
     <div className={`filter ${filterName}`}>
-      <h3 className="filter__name">{ displayName }</h3>
       {
         (() => {
           switch (component) {
@@ -40,6 +39,7 @@ const Filter = ({ filter, userFilter }) => {
             case componentTypes.DROPDOWN_COMP: {
               return (
                 <SelectFilter
+                  placeholder={placeholder}
                   filterName={filterName}
                   list={list}
                   userFilter={userFilter}/>

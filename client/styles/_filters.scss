@@ -18,6 +18,7 @@
   text-transform: lowercase;
   font-variant: small-caps;
   font-weight: 100;
+  font-size: 14px;
 
   &:hover {
     background: darken($bg, 20%);
@@ -77,6 +78,8 @@
 
   @at-root #{&}__select {
     width: 50%;
+    font-family: $contnetFont;
+    font-size: 14px;
 
     .Select-menu-outer {
       z-index: 999;

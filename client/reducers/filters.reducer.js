@@ -38,9 +38,11 @@ const createFilter = (filterName, filterTypes, filterLists) => {
     },
     country: {
       component: DROPDOWN_COMP,
+      placeholder: 'Выберите страну',
     },
     city: {
       component: DROPDOWN_COMP,
+      placeholder: 'Выбрать город',
     },
     category1: {
       component: LIST_COMP,
@@ -53,6 +55,7 @@ const createFilter = (filterName, filterTypes, filterLists) => {
     },
     guide: {
       component: DROPDOWN_COMP,
+      placeholder: 'Выбрать гида',
     },
     month: {
       component: LIST_COMP,

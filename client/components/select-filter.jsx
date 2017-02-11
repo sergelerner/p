@@ -26,13 +26,13 @@ class SelectFilter extends Component {
 
   render() {
     const { value } = this.state;
-    const { list } = this.props;
+    const { list, placeholder } = this.props;
     return (
       <Select
           className="filter__select"
-          placeholder="Где вы хотите путешествовать"
+          placeholder={placeholder}
           labelKey={"name"}
-          value={{ name: value }}
+          value={(value) ? { name: value } : ''}
           options={list}
           onChange={::this.handleChange}
       />
@@ -42,6 +42,7 @@ class SelectFilter extends Component {
 
 SelectFilter.propTypes = {
   filterName: PropTypes.string,
+  placeholder: PropTypes.string,
   list: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string,
     isActive: PropTypes.bool,
