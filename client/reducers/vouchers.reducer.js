@@ -92,7 +92,7 @@ export default function (state = initialState, action) {
       const updatedFilters =
         (isActive)
           ? assign({}, filters, { [filterName]: value })
-          : {};
+          : omit(filters, [filterName]);
 
       return u({
         filters: () => updatedFilters,
