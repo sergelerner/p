@@ -27,7 +27,7 @@ const supportedFilters = [
   'category2',
   'category3',
   'guide',
-  'month',
+  'months',
   'status',
 ];
 
@@ -57,7 +57,7 @@ const createFilter = (filterName, filterTypes, filterLists) => {
       component: DROPDOWN_COMP,
       placeholder: 'Выбрать гида',
     },
-    month: {
+    months: {
       component: LIST_COMP,
     },
     status: {

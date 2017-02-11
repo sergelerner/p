@@ -68,6 +68,7 @@ class Filters extends Component {
   render() {
     const {
       isReady,
+      months,
       country,
       company,
       guide,
@@ -79,6 +80,7 @@ class Filters extends Component {
         {
           isReady && (
             <div>
+              <Filter filter={months} userFilter={userFilterBy}/>
               <Filter filter={company} userFilter={userFilterBy}/>
               <Filter filter={status} userFilter={userFilterBy}/>
               <div className="group">
@@ -107,6 +109,7 @@ Filters.propTypes = {
   status: filterShapeType,
   country: filterShapeType,
   guide: filterShapeType,
+  months: filterShapeType,
 };
 
 const mapStateToProps = (state) => ({
@@ -115,6 +118,7 @@ const mapStateToProps = (state) => ({
   status: get(state, ['filters', 'status']),
   country: get(state, ['filters', 'country']),
   guide: get(state, ['filters', 'guide']),
+  months: get(state, ['filters', 'months']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
