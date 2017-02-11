@@ -52,6 +52,14 @@
     display: flex;
   }
 
+  @at-root #{&}__select {
+    width: 50%;
+
+    .Select-menu-outer {
+      z-index: 999;
+    }
+  }
+
   @at-root #{&}__item {
     margin-right: 10px;
 

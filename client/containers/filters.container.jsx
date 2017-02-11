@@ -1,6 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import Select from 'react-select';
+
+import * as componentTypes from '../constants/filter-component-types.js';
 
 import { filterBy } from '../actions/filter.actions.js';
 
@@ -11,20 +14,46 @@ const Filter = ({ filter, userFilter }) => {
   return (
     <div className={`filter ${filterName}`}>
       <h3 className="filter__name">{ displayName }</h3>
-      <ul className="filter__list">
-        {
-          list.map(({ name, isActive }) => (
-            <li
-              className={classNames('filter__item', { active: isActive })}
-              key={name}>
-              <button
-                onClick={() => userFilter(filterName, name, !isActive)}>
-                { name }
-              </button>
-            </li>
-          ))
-        }
-      </ul>
+      {
+        (() => {
+          switch (component) {
+            case componentTypes.LIST_COMP: {
+              return (
+                <ul className="filter__list">
+                  {
+                    list.map(({ name, isActive }) => (
+                      <li
+                        className={classNames('filter__item', { active: isActive })}
+                        key={name}>
+                        <button
+                          onClick={() => userFilter(filterName, name, !isActive)}>
+                          { name }
+                        </button>
+                      </li>
+                    ))
+                  }
+                </ul>
+              );
+            }
+
+            case componentTypes.DROPDOWN_COMP: {
+              return (
+                <Select
+                    className="filter__select"
+                    placeholder="Где вы хотите путешествовать"
+                    labelKey={"name"}
+                    value=""
+                    options={list}
+                    onChange={(value) => userFilter(filterName, value.name, !value.isActive)}
+                />
+              );
+            }
+
+            default:
+              return null;
+          }
+        })()
+      }
     </div>
   );
 };
@@ -40,7 +69,13 @@ Filter.propTypes = {
 
 class Filters extends Component {
   render() {
-    const { isReady, company, status, userFilterBy } = this.props;
+    const {
+      isReady,
+      country,
+      company,
+      status,
+      userFilterBy,
+    } = this.props;
     return (
       <section className="filters">
         {
@@ -48,6 +83,7 @@ class Filters extends Component {
             <div>
               <Filter filter={company} userFilter={userFilterBy}/>
               <Filter filter={status} userFilter={userFilterBy}/>
+              <Filter filter={country} userFilter={userFilterBy}/>
             </div>
           )
         }
@@ -68,12 +104,14 @@ Filters.propTypes = {
   isReady: PropTypes.bool.isRequired,
   company: filterShapeType,
   status: filterShapeType,
+  country: filterShapeType,
 };
 
 const mapStateToProps = (state) => ({
   isReady: get(state, ['filters', 'isReady']),
   company: get(state, ['filters', 'company']),
   status: get(state, ['filters', 'status']),
+  country: get(state, ['filters', 'country']),
 });
 
 const mapDispatchToProps = (dispatch) => ({
