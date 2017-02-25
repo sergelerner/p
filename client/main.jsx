@@ -30,7 +30,7 @@ const handleLandOnTour = ({ dispatch }) => (nextState) => {
 ReactDOM.render(
   <Provider store={Store}>
     <Router history={history}>
-      <Route path="/puteshestvennik" component={App} onEnter={handleLandOnHome(Store)}/>
+      <Route path="/" component={App} onEnter={handleLandOnHome(Store)}/>
       <Route path="/tour" component={Tour} onEnter={handleLandOnTour(Store)}/>
     </Router>
   </Provider>
