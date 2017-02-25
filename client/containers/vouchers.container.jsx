@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import classNames from 'classnames';
 
+import { goToTour } from '../actions/route.actions.js';
+
 import get from 'lodash/get';
 
 class Vouchers extends Component {
@@ -47,7 +49,7 @@ class Vouchers extends Component {
   }
 
   render() {
-    const { isReady, head, body } = this.props;
+    const { isReady, head, body, userGoToTour } = this.props;
     return (
       <section className="vouchers">
         {
@@ -67,7 +69,10 @@ class Vouchers extends Component {
                     header={<Cell className="vouchers__head">{ displayName }</Cell>}
                     cell={
                       (props) => (
-                        <Cell className="vouchers__cell" { ...props }>
+                        <Cell
+                          className="vouchers__cell"
+                          onClick={() => userGoToTour(body[props.rowIndex].tourl)}
+                          { ...props }>
                           { ::this.createCellContent(colName, body[props.rowIndex][colName]) }
                         </Cell>
                       )
@@ -84,6 +89,7 @@ class Vouchers extends Component {
 }
 
 Vouchers.propTypes = {
+  userGoToTour: PropTypes.func.isRequired,
   isReady: PropTypes.bool.isRequired,
   head: PropTypes.array,
   body: PropTypes.array,
@@ -96,4 +102,10 @@ const mapStateToProps = (state) => ({
 
 });
 
-export default connect(mapStateToProps)(Vouchers);
+const mapDispatchToProps = (dispatch) => ({
+  userGoToTour: (id) => {
+    dispatch(goToTour(id));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Vouchers);

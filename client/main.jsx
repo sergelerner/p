@@ -5,9 +5,10 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import { Router, Route, browserHistory } from 'react-router';
 
 import Store from './store/store.js';
-import { landOnHomePage } from './actions/route.actions.js';
+import { landOnHomePage, landOnTour } from './actions/route.actions.js';
 
 import App from './containers/app.jsx';
+import Tour from './containers/tour.container.jsx';
 
 import './styles/style.scss';
 
@@ -21,10 +22,16 @@ const handleLandOnHome = ({ dispatch }) => (nextState) => {
   dispatch(landOnHomePage(location));
 };
 
+const handleLandOnTour = ({ dispatch }) => (nextState) => {
+  const { location } = nextState;
+  dispatch(landOnTour(location));
+};
+
 ReactDOM.render(
   <Provider store={Store}>
     <Router history={history}>
-      <Route path="*" component={App} onEnter={handleLandOnHome(Store)}/>
+      <Route path="/puteshestvennik" component={App} onEnter={handleLandOnHome(Store)}/>
+      <Route path="/tour" component={Tour} onEnter={handleLandOnTour(Store)}/>
     </Router>
   </Provider>
   ,

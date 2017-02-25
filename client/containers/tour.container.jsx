@@ -1,37 +1,11 @@
-import React, { Component } from 'react';
-import parseHtml from '../utils/parse-html.js';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-const docKey = '1oYioBMm1ivrmJwCTpQqhkKJ2DQClyreWAG_6z9OGgbw';
-
-const getDoc = (docKey) => {
-  const docPath = `https://docs.google.com/feeds/download/documents/export/Export?id=${docKey}&exportFormat=html`;
-  return new Promise((resolve) => {
-    fetch(docPath)
-      .then((response) => response.text())
-      .then((result) => {
-        const { html, styles } = parseHtml(result);
-        resolve(html + styles);
-      });
-  });
-};
+import get from 'lodash/get';
 
 class Tour extends Component {
-  constructor() {
-    super();
-    this.state = {
-      content: '',
-    };
-  }
-
-  componentDidMount() {
-    getDoc(docKey)
-      .then((content) => this.setState({
-        content,
-      }));
-  }
-
   render() {
-    const { content } = this.state;
+    const { content } = this.props;
     return (
       <main>
         <div dangerouslySetInnerHTML={{ __html: content }}></div>
@@ -40,4 +14,12 @@ class Tour extends Component {
   }
 }
 
-export default Tour;
+Tour.propTypes = {
+  content: PropTypes.string,
+};
+
+const mapStateToProps = (state) => ({
+  content: get(state, ['tours', 'content']),
+});
+
+export default connect(mapStateToProps)(Tour);

@@ -2,3 +2,5 @@ export const RECIEVE_VOUCHERS = 'RECIEVE_VOUCHERS';
 export const RECIEVE_FILTERS = 'RECIEVE_FILTERS';
 
 export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+
+export const VIEW_TOUR = 'VIEW_TOUR';

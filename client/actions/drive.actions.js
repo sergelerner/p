@@ -24,3 +24,17 @@ export const loadSheet = () => (dispatch) => {
     },
   });
 };
+
+export const loadDoc = (id) => (dispatch) => {
+  const docPath = `https://docs.google.com/feeds/download/documents/export/Export?id=${id}&exportFormat=html`;
+
+  fetch(docPath)
+    .then((response) => response.text())
+    .then((result) => {
+      dispatch({
+        type: actionTypes.VIEW_TOUR,
+        id,
+        result,
+      });
+    });
+};
