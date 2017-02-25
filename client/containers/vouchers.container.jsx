@@ -71,7 +71,7 @@ class Vouchers extends Component {
                       (props) => (
                         <Cell
                           className={classNames('vouchers__cell', { active: !!body[props.rowIndex].tourl })}
-                          onClick={() => userGoToTour(body[props.rowIndex].tourl)}
+                          onClick={() => !!body[props.rowIndex].tourl && userGoToTour(body[props.rowIndex].tourl)}
                           { ...props }>
                           { ::this.createCellContent(colName, body[props.rowIndex][colName]) }
                         </Cell>
