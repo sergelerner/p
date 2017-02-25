@@ -1,0 +1,20 @@
+.spinner {
+  $loadingSpinnerDiameter: 200px;
+  $loadingSpinnerStrokeWidth: 2px;
+  $loadingSpinnerColor: $color-a-1;
+  $loadingSpinnerSpeed: .7s;
+
+  display: inline-block;
+  vertical-align: middle;
+  width: $loadingSpinnerDiameter - ($loadingSpinnerStrokeWidth * 2);
+  height: $loadingSpinnerDiameter - ($loadingSpinnerStrokeWidth * 2);
+  border: $loadingSpinnerStrokeWidth solid $loadingSpinnerColor;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  animation: loadingSpinner $loadingSpinnerSpeed infinite linear;
+}
+
+@keyframes loadingSpinner {
+  from { transform: rotate(0deg)   }
+  to   { transform: rotate(360deg) }
+}
