@@ -7,7 +7,6 @@ import { Router, Route, browserHistory } from 'react-router';
 import Store from './store/store.js';
 import { landOnHomePage } from './actions/route.actions.js';
 
-import Tour from './containers/tour.jsx';
 import App from './containers/app.jsx';
 
 import './styles/style.scss';
