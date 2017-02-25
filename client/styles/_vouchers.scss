@@ -28,5 +28,20 @@
         color: $color-a-2;
       }
     }
+
+    .company {
+      text-align: center;
+
+      span:first-child {
+        display: block;
+        color: $color-a-4;
+        font-weight: bold;
+
+        margin-bottom: 5px;
+      }
+      span:last-child {
+        color: $color-a-1;
+      }
+    }
   }
 }

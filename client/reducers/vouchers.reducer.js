@@ -14,16 +14,16 @@ const initialState = {
   isReady: false,
 };
 
-const supportedColumns = [
-  'departure',
-  'name',
-  'company',
-  'status',
-  'price',
-  'notes',
-];
-
 const createHead = (firstRow) => {
+  const supportedColumns = [
+    'departure',
+    'name',
+    'company',
+    'status',
+    'price',
+    'notes',
+  ];
+
   const settings = {
     departure: {
       width: 150,
@@ -63,6 +63,7 @@ const createBody = (rows) => {
   const body = rows.map((row) => ({
     ...row,
     price: `${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
+    company: `${row.company} | ${row.guide}`,
   }));
 
   return body;

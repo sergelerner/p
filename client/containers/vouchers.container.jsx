@@ -28,6 +28,15 @@ class Vouchers extends Component {
           }
         </div>
       ),
+      company: (
+        <div>
+          {
+            content && content.split('|').map((item, i) => (
+              <span key={i}>{ item }</span>
+            ))
+          }
+        </div>
+      ),
     };
 
     const cellProps = { className: classNames('content', type) };
