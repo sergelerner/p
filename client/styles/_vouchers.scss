@@ -16,6 +16,10 @@
   @at-root #{&}__cell {
     text-align: center;
 
+    &.active {
+      cursor: pointer;
+    }
+
     .content {
       font-size: 14px;
     }
