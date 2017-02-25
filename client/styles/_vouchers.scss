@@ -7,12 +7,15 @@
   justify-content: center;
 
   @at-root #{&}__head {
+    text-align: center;
     background: $color-a-5;
     color: $color-a-3;
     font-weight: 100;
   }
 
   @at-root #{&}__cell {
+    text-align: center;
+
     .content {
       font-size: 14px;
     }
@@ -30,7 +33,7 @@
     }
 
     .company {
-      text-align: center;
+
 
       span:first-child {
         display: block;

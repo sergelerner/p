@@ -68,11 +68,11 @@ class Filters extends Component {
   render() {
     const {
       isReady,
+      category1,
       months,
       country,
       company,
       guide,
-      status,
       userFilterBy,
     } = this.props;
     return (
@@ -80,11 +80,10 @@ class Filters extends Component {
         {
           isReady && (
             <div>
-              <Filter filter={months} userFilter={userFilterBy}/>
-              <Filter filter={company} userFilter={userFilterBy}/>
-              <Filter filter={status} userFilter={userFilterBy}/>
               <div className="group">
-                <Filter filter={country} userFilter={userFilterBy}/>
+                <Filter filter={category1} userFilter={userFilterBy}/>
+                <Filter filter={months} userFilter={userFilterBy}/>
+                <Filter filter={company} userFilter={userFilterBy}/>
                 <Filter filter={guide} userFilter={userFilterBy}/>
               </div>
             </div>
@@ -105,18 +104,16 @@ const filterShapeType = PropTypes.shape({
 Filters.propTypes = {
   userFilterBy: PropTypes.func.isRequired,
   isReady: PropTypes.bool.isRequired,
+  category1: filterShapeType,
   company: filterShapeType,
-  status: filterShapeType,
-  country: filterShapeType,
   guide: filterShapeType,
   months: filterShapeType,
 };
 
 const mapStateToProps = (state) => ({
   isReady: get(state, ['filters', 'isReady']),
+  category1: get(state, ['filters', 'category1']),
   company: get(state, ['filters', 'company']),
-  status: get(state, ['filters', 'status']),
-  country: get(state, ['filters', 'country']),
   guide: get(state, ['filters', 'guide']),
   months: get(state, ['filters', 'months']),
 });

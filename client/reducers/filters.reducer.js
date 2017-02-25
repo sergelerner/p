@@ -34,7 +34,8 @@ const supportedFilters = [
 const createFilter = (filterName, filterTypes, filterLists) => {
   const settings = {
     company: {
-      component: LIST_COMP,
+      component: DROPDOWN_COMP,
+      placeholder: 'Выберите туроператора',
     },
     country: {
       component: DROPDOWN_COMP,
@@ -45,20 +46,22 @@ const createFilter = (filterName, filterTypes, filterLists) => {
       placeholder: 'Выбрать город',
     },
     category1: {
-      component: LIST_COMP,
+      component: DROPDOWN_COMP,
+      placeholder: 'Выберите направление',
     },
     category2: {
-      component: LIST_COMP,
+      component: DROPDOWN_COMP,
     },
     category3: {
-      component: LIST_COMP,
+      component: DROPDOWN_COMP,
     },
     guide: {
       component: DROPDOWN_COMP,
       placeholder: 'Выбрать гида',
     },
     months: {
-      component: LIST_COMP,
+      component: DROPDOWN_COMP,
+      placeholder: 'Выберите месяц',
     },
     status: {
       component: LIST_COMP,
