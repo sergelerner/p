@@ -7,7 +7,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import Store from './store/store.js';
 import { landOnHomePage, landOnTour } from './actions/route.actions.js';
 
-import App from './containers/app.jsx';
+import Main from './containers/main.container.jsx';
 import Tour from './containers/tour.container.jsx';
 
 import './styles/style.scss';
@@ -30,7 +30,7 @@ const handleLandOnTour = ({ dispatch }) => (nextState) => {
 ReactDOM.render(
   <Provider store={Store}>
     <Router history={history}>
-      <Route path="/" component={App} onEnter={handleLandOnHome(Store)}/>
+      <Route path="/" component={Main} onEnter={handleLandOnHome(Store)}/>
       <Route path="/tour" component={Tour} onEnter={handleLandOnTour(Store)}/>
     </Router>
   </Provider>

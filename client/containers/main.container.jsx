@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Filters from './filters.container.jsx';
 import Vouchers from './vouchers.container.jsx';
 
-class App extends Component {
+class Main extends Component {
   render() {
     return (
       <main className="main">
@@ -16,4 +16,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Main;
