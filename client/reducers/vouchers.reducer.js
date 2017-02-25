@@ -8,26 +8,27 @@ import pick from 'lodash/pick';
 import filter from 'lodash/filter';
 import assign from 'lodash/assign';
 import omit from 'lodash/omit';
+import sortBy from 'lodash/sortBy';
 
 const initialState = {
   isReady: false,
 };
 
 const supportedColumns = [
+  'departure',
   'name',
   'company',
   'status',
-  'departure',
-  'arrival',
   'price',
-  'guide',
   'notes',
 ];
 
 const createHead = (firstRow) => {
   const settings = {
+    departure: {
+      width: 150,
+    },
     name: {
-      isFixed: true,
       width: 300,
     },
     company: {
@@ -38,9 +39,6 @@ const createHead = (firstRow) => {
     },
     price: {
       width: 100,
-    },
-    departure: {
-      width: 150,
     },
     notes: {
       width: 300,
@@ -55,7 +53,10 @@ const createHead = (firstRow) => {
     ...settings[key],
   }));
 
-  return head;
+  const sorrtedHead = sortBy(head, (item) =>
+    supportedColumns.indexOf(item.colName));
+
+  return sorrtedHead;
 };
 
 const createBody = (rows) => {
