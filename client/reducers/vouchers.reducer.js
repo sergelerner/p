@@ -70,8 +70,8 @@ const createBody = (rows) => {
   const body = rows.map((row) => ({
     ...row,
     departure: rangeDate(row.departure, row.arrival),
-    price: `${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
-    company: `${row.company} | ${row.guide}`,
+    price: row.price + row.coin + '|' + (row.price - row.discount) + row.coin,
+    company: row.company + ' | ' + row.guide,
     tourl: row.tourl.split('=')[1],
   }));
 
@@ -91,7 +91,7 @@ export default function (state = initialState, action) {
       return u({
         isReady: true,
         head,
-        all: body,
+        all: otherRows,
         body,
       }, state);
     }
@@ -105,9 +105,11 @@ export default function (state = initialState, action) {
           ? assign({}, filters, { [filterName]: value })
           : omit(filters, [filterName]);
 
+      const filteredAll = filter(all, updatedFilters);
+
       return u({
         filters: () => updatedFilters,
-        body: filter(all, updatedFilters),
+        body: createBody(filteredAll),
       }, state);
     }
 
