@@ -1,4 +1,5 @@
 import * as actionTypes from '../constants/action-types.js';
+import moment from 'moment';
 import u from 'updeep';
 
 import pullAt from 'lodash/head';
@@ -26,7 +27,7 @@ const createHead = (firstRow) => {
 
   const settings = {
     departure: {
-      width: 150,
+      width: 120,
     },
     name: {
       width: 300,
@@ -60,8 +61,15 @@ const createHead = (firstRow) => {
 };
 
 const createBody = (rows) => {
+  const rangeDate = (departure, arrival) => {
+    const d = moment(departure, 'DD/MM/YYYY').format('DD-MM');
+    const a = moment(arrival, 'DD/MM/YYYY').format('DD-MM');
+    return `${d} / ${a}`;
+  };
+
   const body = rows.map((row) => ({
     ...row,
+    departure: rangeDate(row.departure, row.arrival),
     price: `${row.price}${row.coin}|${row.price - row.discount}${row.coin}`,
     company: `${row.company} | ${row.guide}`,
   }));
