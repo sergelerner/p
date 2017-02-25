@@ -3,7 +3,9 @@ import * as actionTypes from '../constants/action-types.js';
 import u from 'updeep';
 
 const initialState = {
+  id: '',
   isReady: false,
+  content: '',
 };
 
 export default function (state = initialState, action) {
@@ -14,7 +16,16 @@ export default function (state = initialState, action) {
       const { html, styles } = parseHtml(result);
       return u({
         id,
+        isReady: true,
         content: html + styles,
+      }, state);
+    }
+
+    case actionTypes.LOAD_TOUR: {
+      return u({
+        id: '',
+        isReady: false,
+        content: '',
       }, state);
     }
 

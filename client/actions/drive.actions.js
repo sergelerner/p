@@ -28,6 +28,10 @@ export const loadSheet = () => (dispatch) => {
 export const loadDoc = (id) => (dispatch) => {
   const docPath = `https://docs.google.com/feeds/download/documents/export/Export?id=${id}&exportFormat=html`;
 
+  dispatch({
+    type: actionTypes.LOAD_TOUR,
+  });
+
   fetch(docPath)
     .then((response) => response.text())
     .then((result) => {
