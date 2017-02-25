@@ -7,7 +7,7 @@ class Tour extends Component {
   render() {
     const { content } = this.props;
     return (
-      <main>
+      <main className="tour">
         <div dangerouslySetInnerHTML={{ __html: content }}></div>
       </main>
     );
