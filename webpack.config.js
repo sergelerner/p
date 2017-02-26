@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const S3Plugin = require('webpack-s3-plugin');
 
 const settingsLocal = require('./settings-local.json');
 
@@ -63,7 +62,7 @@ module.exports = {
   output: {
     path: staticsPath,
     filename: (isDeploy) ? 'main.[hash].js' : 'main.js',
-    publicPath: '/',
+    publicPath: '/p/',
   },
   module: {
     rules: [
@@ -120,14 +119,6 @@ module.exports = {
         minimize: true,
         debug: false,
       }),
-      // new S3Plugin({
-      //   s3Options: {
-      //     region: 'us-west-2',
-      //   },
-      //   s3UploadOptions: {
-      //     Bucket: bucket,
-      //   },
-      // }),
     ]
     : [
       ...plugins,

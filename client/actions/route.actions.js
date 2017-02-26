@@ -15,5 +15,5 @@ export const landOnTour = (location) => (dispatch) => {
 };
 
 export const goToTour = (id) => (_dispatch) => {
-  browserHistory.push(`/tour/?id=${id}`);
+  browserHistory.push(`tour/?id=${id}`);
 };
