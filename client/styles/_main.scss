@@ -10,14 +10,6 @@
 
   max-width: 1000px;
   margin: 0 auto;
-}
 
-.header {
-  margin-bottom: 30px;
-
-  @at-root #{&}__title {
-    text-align: center;
-    color: $color-a-2;
-    font-size: 26px;
-  }
+  background: $color-a-1;
 }

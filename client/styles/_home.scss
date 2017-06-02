@@ -1,0 +1,32 @@
+.home-jumbotron {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 20px 0;
+
+  @at-root #{&}__first-title {
+    font-size: 18px;
+    color: $color-a-3;
+    margin: 10px 0;
+  }
+
+  @at-root #{&}__second-title {
+    font-size: 18px;
+    color: $color-a-2;
+    margin: 10px 0;
+  }
+
+  @at-root #{&}__third-title {
+    margin-bottom: 10px;
+    img {
+      max-width: 500px;
+    }
+  }
+
+  @at-root #{&}__photo {
+    img {
+      max-width: 900px;
+    }
+  }
+}
