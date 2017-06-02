@@ -5,10 +5,14 @@
   align-items: center;
 
   padding: 50px;
+
+  font-family: $font-main;
+
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .header {
-  font-family: $headingFont;
   margin-bottom: 30px;
 
   @at-root #{&}__title {

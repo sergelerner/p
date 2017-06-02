@@ -1,0 +1,76 @@
+.site-header {
+  width: 100%;
+
+  @at-root #{&}__hat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @at-root #{&}__photo {
+    img {
+      width: 100px;
+    }
+  }
+
+  @at-root #{&}__title-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @at-root #{&}__url {
+    $base-color: #E0E102;
+
+    padding: 10px 20px;
+    margin-top: 30px;
+
+    font-size: 21px;
+    color: $color-a-2;
+    background-color: lighten($base-color, 10%);
+
+    border-radius: 5px;
+
+    box-shadow:
+      -1px -1px $base-color,
+      -2px -2px $base-color,
+      -3px -3px $base-color,
+      -4px -4px $base-color,
+      -5px -5px $base-color,
+      -6px -6px $base-color,
+      -7px -7px $base-color,
+      -8px -8px $base-color,
+      -9px -9px $base-color,
+      -10px -10px $base-color,
+      -11px -11px $base-color,
+      -12px -12px $base-color,
+      -13px -13px $base-color;
+  }
+
+  @at-root #{&}__quote {
+    color: $color-a-2;
+    font-weight: 500;
+    font-size: 21px;
+  }
+
+  @at-root #{&}__salutation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin: 20px 0;
+
+    font-size: 18px;
+    color: $color-a-2;
+  }
+
+  @at-root #{&}__salute {
+    @extend %button-green;
+    font-family: $font-heading;
+  }
+
+  @at-root #{&}__phone {
+    @extend %button-green;
+  }
+}

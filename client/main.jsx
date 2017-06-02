@@ -30,7 +30,7 @@ ReactDOM.render(
   <Provider store={Store}>
     <ConnectedRouter history={History}>
       <Switch>
-        <Route exact path="/p/" component={Main} onEnter={handleLandOnHome(Store)}/>
+        <Route exact path="/" component={Main} onEnter={handleLandOnHome(Store)}/>
         <Route path="/tour" component={Tour} onEnter={handleLandOnTour(Store)}/>
       </Switch>
     </ConnectedRouter>
