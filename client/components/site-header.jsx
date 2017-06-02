@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import SiteNavigation from './site-navigation.jsx';
+
 import levPhoto from '../assets/photos/lev.png';
 import tamaraPhoto from '../assets/photos/tamara.png';
 
@@ -7,6 +9,7 @@ class SiteHeader extends Component {
   render() {
     return (
       <header className="site-header">
+
         <div className="site-header__hat">
           <div className="site-header__photo">
             <img src={levPhoto} />
@@ -19,11 +22,14 @@ class SiteHeader extends Component {
             <img src={tamaraPhoto} />
           </div>
         </div>
+
         <div className="site-header__salutation">
           <h4 className="site-header__phone">03-6026443</h4>
           <h1 className="site-header__salute">С уважением, Ваш и в дальнейшем, Лев Путешественник</h1>
           <h4 className="site-header__phone">054-4534590</h4>
         </div>
+
+        <SiteNavigation />
       </header>
     );
   }

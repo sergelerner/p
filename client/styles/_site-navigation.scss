@@ -1,0 +1,23 @@
+.site-navigation {
+  margin: 0 auto;
+
+  @at-root #{&}__items {
+    display: flex;
+    flex-direction: row;
+  }
+
+  @at-root #{&}__item {
+    @extend %button-blue;
+
+    cursor: pointer;
+    color: $color-a-2;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    a {
+      color: inherit;
+    }
+  }
+}
