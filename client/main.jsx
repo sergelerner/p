@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { Router, Route, browserHistory } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 
+import History from './store/history.js';
 import Store from './store/store.js';
 import { landOnHomePage, landOnTour } from './actions/route.actions.js';
 
@@ -11,8 +12,6 @@ import Main from './containers/main.container.jsx';
 import Tour from './containers/tour.container.jsx';
 
 import './styles/style.scss';
-
-const history = syncHistoryWithStore(browserHistory, Store);
 
 const root = document.createElement('root');
 document.body.appendChild(root);
@@ -29,10 +28,12 @@ const handleLandOnTour = ({ dispatch }) => (nextState) => {
 
 ReactDOM.render(
   <Provider store={Store}>
-    <Router history={history}>
-      <Route path="/p" component={Main} onEnter={handleLandOnHome(Store)}/>
-      <Route path="/tour" component={Tour} onEnter={handleLandOnTour(Store)}/>
-    </Router>
+    <ConnectedRouter history={History}>
+      <Switch>
+        <Route exact path="/p/" component={Main} onEnter={handleLandOnHome(Store)}/>
+        <Route path="/tour" component={Tour} onEnter={handleLandOnTour(Store)}/>
+      </Switch>
+    </ConnectedRouter>
   </Provider>
   ,
   root

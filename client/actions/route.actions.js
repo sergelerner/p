@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router';
+import History from '../store/history.js';
 
 import * as actionTypes from '../constants/action-types.js';
 import { loadSheet, loadDoc } from './drive.actions.js';
@@ -15,5 +15,5 @@ export const landOnTour = (location) => (dispatch) => {
 };
 
 export const goToTour = (id) => (_dispatch) => {
-  browserHistory.push(`tour/?id=${id}`);
+  History.push(`tour/?id=${id}`);
 };

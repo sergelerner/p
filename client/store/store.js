@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, compose } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import rootReducer from '../reducers/root.reducer.js';
 import { routerMiddleware } from 'react-router-redux';
-import { browserHistory } from 'react-router';
+import History from './history.js';
 
 const middleware = [ReduxThunk];
 
@@ -16,7 +16,7 @@ if (!devtools) {
   devtools = (f) => f;
 }
 
-middleware.push(routerMiddleware(browserHistory));
+middleware.push(routerMiddleware(History));
 
 const store = createStore(
   rootReducer,
