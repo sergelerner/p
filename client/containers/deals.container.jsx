@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 
 import { prepareImage } from '../utils/cloudinary.js';
 
+import loader from '../hocs/loader.hoc.js';
+
 import get from 'lodash/get';
 import toArray from 'lodash/toArray';
 
+@loader('deals')
 class Deals extends Component {
   render() {
     const { deals } = this.props;
