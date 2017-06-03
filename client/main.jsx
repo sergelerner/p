@@ -26,11 +26,18 @@ const handleLandOnTour = ({ dispatch }) => (nextState) => {
   dispatch(landOnTour(location));
 };
 
+const ActionableRoute = ({ component: Component, action, ...rest}) => (
+  <Route {...rest} render={({ location }) => {
+    action(location);
+    return <Component {...rest} />;
+  }}/>
+);
+
 ReactDOM.render(
   <Provider store={Store}>
     <ConnectedRouter history={History}>
       <Switch>
-        <Route exact path="/" component={Main} onEnter={handleLandOnHome(Store)}/>
+        <ActionableRoute exact path="/" component={Main} action={handleLandOnHome(Store)}/>
         <Route path="/tour" component={Tour} onEnter={handleLandOnTour(Store)}/>
       </Switch>
     </ConnectedRouter>
