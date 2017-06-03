@@ -14,6 +14,11 @@ export const loadSheet = () => (dispatch) => {
     callback: (result, _tabletop) => {
       console.log('table result', result);
 
+      dispatch({
+        type: ActionTypes.RECIEVE_DEALS,
+        raw: get(result, [TableTypes.DEALS, 'elements']),
+      });
+
       // dispatch({
       //   type: ActionTypes.RECIEVE_VOUCHERS,
       //   vouchersRaw: get(result, [TableTypes.VOUCHERS, 'elements']),
