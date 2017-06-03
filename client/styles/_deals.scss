@@ -1,0 +1,7 @@
+.deals {
+  @at-root #{&}__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

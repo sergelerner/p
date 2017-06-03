@@ -6,7 +6,7 @@ import keyBy from 'lodash/keyBy';
 import drop from 'lodash/drop';
 
 const initialState = {
-  deals: {},
+  list: {},
 };
 
 export default function (state = initialState, action) {
@@ -17,10 +17,12 @@ export default function (state = initialState, action) {
       const allRowsExceptFirst = drop(raw, [1]);
 
       return u({
-        deals: keyBy(map(allRowsExceptFirst, ({ name, photo, price }) => ({
+        list: keyBy(map(allRowsExceptFirst, ({ name, photo, price, coin, date }) => ({
           name,
           photo,
           price,
+          coin,
+          date,
         })), 'name'),
       }, state);
     }
