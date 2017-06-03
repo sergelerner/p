@@ -3,7 +3,8 @@
     "transform-object-rest-spread",
     "transform-async-to-generator",
     "transform-runtime",
-    "transform-function-bind"
+    "transform-function-bind",
+    "transform-decorators-legacy"
   ],
   "presets": [
     ["es2015", { "modules": false }],
