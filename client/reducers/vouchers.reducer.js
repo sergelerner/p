@@ -72,7 +72,7 @@ const createBody = (rows) => {
     departure: rangeDate(row.departure, row.arrival),
     price: row.price + row.coin + '|' + (row.price - row.discount) + row.coin,
     company: row.company + ' | ' + row.guide,
-    tourl: row.tourl.split('=')[1],
+    description: row.description.split('=')[1],
   }));
 
   return body;
@@ -90,8 +90,8 @@ export default function (state = initialState, action) {
 
       return u({
         isReady: true,
-        head,
         all: otherRows,
+        head,
         body,
       }, state);
     }

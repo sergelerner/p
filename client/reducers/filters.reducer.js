@@ -21,54 +21,33 @@ const initialState = {
 
 const supportedFilters = [
   'company',
-  'country',
-  'city',
-  'category1',
-  'category2',
-  'category3',
   'guide',
   'months',
   'status',
+  'active',
+  'category',
 ];
 
-const createFilter = (filterName, filterTypes, filterLists) => {
-  const settings = {
-    company: {
-      component: DROPDOWN_COMP,
-      placeholder: 'Выберите туроператора',
-    },
-    country: {
-      component: DROPDOWN_COMP,
-      placeholder: 'Выберите страну',
-    },
-    city: {
-      component: DROPDOWN_COMP,
-      placeholder: 'Выбрать город',
-    },
-    category1: {
-      component: DROPDOWN_COMP,
-      placeholder: 'Выберите направление',
-    },
-    category2: {
-      component: DROPDOWN_COMP,
-    },
-    category3: {
-      component: DROPDOWN_COMP,
-    },
-    guide: {
-      component: DROPDOWN_COMP,
-      placeholder: 'Выбрать гида',
-    },
-    months: {
-      component: DROPDOWN_COMP,
-      placeholder: 'Выберите месяц',
-    },
-    status: {
-      component: LIST_COMP,
-    },
-  };
+const components = {
+  company: {
+    uiType: DROPDOWN_COMP,
+    placeholder: 'Выберите туроператора',
+  },
+  guide: {
+    uiType: DROPDOWN_COMP,
+    placeholder: 'Выбрать гида',
+  },
+  months: {
+    uiType: DROPDOWN_COMP,
+    placeholder: 'Выберите месяц',
+  },
+  status: {
+    uiType: LIST_COMP,
+  },
+};
 
-  const list = reduce(filterLists, (acc, item) => {
+const createFilter = (filterName, filterTypes, filterLists) => {
+  const list = compact(reduce(filterLists, (acc, item) => {
     if (item[filterName]) {
       acc.push({
         name: get(item, [filterName]),
@@ -76,13 +55,13 @@ const createFilter = (filterName, filterTypes, filterLists) => {
       });
     }
     return acc;
-  }, []);
+  }, []));
 
   return {
     filterName,
     displayName: filterTypes[filterName],
-    ...settings[filterName],
-    list: compact(list),
+    component: components[filterName],
+    list,
   };
 };
 
@@ -90,12 +69,14 @@ export default function (state = initialState, action) {
   switch (action.type) {
 
     case actionTypes.RECIEVE_FILTERS: {
-      const { filtersRaw } = action;
-      const firstRow = pullAt(filtersRaw, [1]);
-      const otherRows = drop(filtersRaw, [1]);
+      const { raw } = action;
+      const firstRow = pullAt(raw, [1]);
+      const otherRows = drop(raw, [1]);
 
-      const filters = map(supportedFilters, (filterName) =>
-        createFilter(filterName, firstRow, otherRows));
+      const filters = map(
+        supportedFilters,
+        (filterName) => createFilter(filterName, firstRow, otherRows)
+      );
 
       return u({
         isReady: true,

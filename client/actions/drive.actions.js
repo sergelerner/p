@@ -19,15 +19,15 @@ export const loadSheet = () => (dispatch) => {
         raw: get(result, [TableTypes.DEALS, 'elements']),
       });
 
-      // dispatch({
-      //   type: ActionTypes.RECIEVE_VOUCHERS,
-      //   vouchersRaw: get(result, [TableTypes.VOUCHERS, 'elements']),
-      // });
-      //
-      // dispatch({
-      //   type: ActionTypes.RECIEVE_FILTERS,
-      //   filtersRaw: get(result, [TableTypes.FILTERS, 'elements']),
-      // });
+      dispatch({
+        type: ActionTypes.RECIEVE_VOUCHERS,
+        vouchersRaw: get(result, [TableTypes.VOUCHERS, 'elements']),
+      });
+
+      dispatch({
+        type: ActionTypes.RECIEVE_FILTERS,
+        raw: get(result, [TableTypes.FILTERS, 'elements']),
+      });
     },
   });
 };
