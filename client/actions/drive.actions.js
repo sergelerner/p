@@ -26,7 +26,10 @@ export const loadSheet = () => (dispatch) => {
 
       dispatch({
         type: ActionTypes.RECIEVE_FILTERS,
-        raw: get(result, [TableTypes.FILTERS, 'elements']),
+        basic: get(result, [TableTypes.FILTERS, 'elements']),
+        destination: get(result, [TableTypes.DESTINATION, 'elements']),
+        subdestination: get(result, [TableTypes.SUBDESTINATION, 'elements']),
+        destination2subdestination: get(result, [TableTypes.DESTINATION2SUBDESTINATION, 'elements']),
       });
     },
   });

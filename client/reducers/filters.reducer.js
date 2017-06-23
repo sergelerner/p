@@ -15,6 +15,7 @@ import compact from 'lodash/compact';
 import keyBy from 'lodash/keyBy';
 import assign from 'lodash/assign';
 import omit from 'lodash/omit';
+import filter from 'lodash/filter';
 
 const initialState = {
   isReady: false,
@@ -29,6 +30,8 @@ const supportedFilters = [
   'status',
   'active',
   'category',
+  'destination',
+  'subdestination',
 ];
 
 const components = {
@@ -52,9 +55,20 @@ const components = {
 const createFilter = (filterName, filterTypes, filterLists) => {
   const list = compact(reduce(filterLists, (acc, item) => {
     if (item[filterName]) {
-      acc.push({
-        name: get(item, [filterName]),
-      });
+      switch (filterName) {
+        case 'destination': {
+          const name = get(item, [filterName]);
+          acc.push({
+            name,
+            desc: get(filter(filterLists, { destination: name }), [0, 'destination_desc']),
+          });
+          break;
+        }
+        default:
+          acc.push({
+            name: get(item, [filterName]),
+          });
+      }
     }
     return acc;
   }, []));
@@ -71,20 +85,26 @@ export default function (state = initialState, action) {
   switch (action.type) {
 
     case actionTypes.RECIEVE_FILTERS: {
-      const { raw } = action;
-      const firstRow = pullAt(raw, [1]);
-      const otherRows = drop(raw, [1]);
-
-      const filters = map(
-        supportedFilters,
-        (filterName) => createFilter(filterName, firstRow, otherRows)
-      );
+      const {
+        basic,
+        destination,
+        subdestination,
+        destination2subdistination,
+      } = action;
 
       return u({
         isReady: true,
-        all: {
-          ...keyBy(filters, 'filterName'),
-        },
+        all: keyBy(
+          map(
+            supportedFilters,
+            (filterName) => createFilter(
+              filterName,
+              { ...pullAt(basic, [1]), ...pullAt(destination, [1]), ...pullAt(subdestination, [1]) },
+              [...drop(basic, [1]), ...drop(destination, [1]), ...drop(subdestination, [1])]
+            )
+          ),
+          'filterName'
+        ),
       }, state);
     }
 
