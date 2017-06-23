@@ -7,6 +7,8 @@ import classNames from 'classnames';
 
 import { goToTour } from '../actions/route.actions.js';
 
+import { selectFilteredVouchers } from '../selectors/vouchers.selector.js';
+
 import get from 'lodash/get';
 
 class Vouchers extends Component {
@@ -99,7 +101,7 @@ Vouchers.propTypes = {
 const mapStateToProps = (state) => ({
   isReady: get(state, ['vouchers', 'isReady']),
   head: get(state, ['vouchers', 'head']),
-  body: get(state, ['vouchers', 'body']),
+  body: selectFilteredVouchers(state),
 
 });
 

@@ -49,9 +49,8 @@ Filters.propTypes = {
 
 const mapStateToProps = (state) => ({
   isReady: get(state, ['filters', 'isReady']),
-  company: get(state, ['filters', 'company']),
-  months: get(state, ['filters', 'months']),
-  guide: get(state, ['filters', 'guide']),
+  company: get(state, ['filters', 'all', 'company']),
+  months: get(state, ['filters', 'all', 'months']),
 });
 
 const mapDispatchToProps = (dispatch) => ({

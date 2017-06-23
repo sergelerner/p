@@ -14,9 +14,12 @@ import reduce from 'lodash/reduce';
 import compact from 'lodash/compact';
 import keyBy from 'lodash/keyBy';
 import assign from 'lodash/assign';
+import omit from 'lodash/omit';
 
 const initialState = {
   isReady: false,
+  all: {},
+  active: {},
 };
 
 const supportedFilters = [
@@ -51,7 +54,6 @@ const createFilter = (filterName, filterTypes, filterLists) => {
     if (item[filterName]) {
       acc.push({
         name: get(item, [filterName]),
-        isActive: false,
       });
     }
     return acc;
@@ -80,24 +82,23 @@ export default function (state = initialState, action) {
 
       return u({
         isReady: true,
-        ...keyBy(filters, 'filterName'),
+        all: {
+          ...keyBy(filters, 'filterName'),
+        },
       }, state);
     }
 
     case actionTypes.TOGGLE_FILTER: {
       const { filterName, value, isActive } = action;
+      const { active } = state;
 
-      const list = map(get(state, [filterName, 'list']), (filter) =>
-        (filter.name === value)
-          ? assign({}, filter, { isActive })
-          : assign({}, filter, { isActive: false })
-        );
+      const updatedFilters =
+        (isActive)
+          ? assign({}, active, { [filterName]: value })
+          : omit(active, [filterName]);
 
       return u({
-        [filterName]: (props) => ({
-          ...props,
-          list,
-        }),
+        active: () => updatedFilters,
       }, state);
     }
 
