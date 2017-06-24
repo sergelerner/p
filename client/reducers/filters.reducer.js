@@ -102,6 +102,8 @@ export default function (state = initialState, action) {
         destination2subdestination,
       } = action;
 
+      const activeDestination = get(state, ['active', 'destination']);
+
       const all = keyBy(
         map(
           supportedFilters,
@@ -127,7 +129,7 @@ export default function (state = initialState, action) {
         isReady: true,
         all,
         active: {
-          destination: get(all, ['destination', 'list', 0, 'name']),
+          destination: activeDestination || get(all, ['destination', 'list', 0, 'name']),
         },
       }, state);
     }

@@ -9,8 +9,14 @@ import { goToTour } from '../actions/route.actions.js';
 
 import { selectFilteredVouchers } from '../selectors/vouchers.selector.js';
 
+import vouchersDatasource from '../datasources/vouchers.datasource.jsx';
+
+import loader from '../hocs/loader.hoc.js';
+
 import get from 'lodash/get';
 
+@vouchersDatasource()
+@loader('head')
 class Vouchers extends Component {
   constructor(props) {
     super(props);

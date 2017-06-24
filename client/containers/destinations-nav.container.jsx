@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import { filterBy } from '../actions/filter.actions.js';
+import { enterVouchers } from '../actions/navigation.actions.js';
 
 import get from 'lodash/get';
 import find from 'lodash/find';
@@ -15,6 +16,7 @@ class DestinationNav extends Component {
   render() {
     const {
       userFilterBy,
+      userEnterVouchers,
       destinations,
       activeDestination,
     } = this.props;
@@ -56,7 +58,8 @@ class DestinationNav extends Component {
                 subdestinations && subdestinations.map((subdestination) => (
                   <li
                     key={activeDestination + '-' + subdestination.name}
-                    className="destinations-nav__item destinations-nav__item--subdestinations">
+                    className="destinations-nav__item destinations-nav__item--subdestinations"
+                    onClick={() => userEnterVouchers(subdestination.name)}>
                     <span className="destinations-nav__name destinations-nav__name--subdestinations">{subdestination.name}</span>
                   </li>
                 ))
@@ -81,6 +84,7 @@ class DestinationNav extends Component {
 
 DestinationNav.propTypes = {
   userFilterBy: PropTypes.func.isRequired,
+  userEnterVouchers: PropTypes.func.isRequired,
   destinations: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.string.isRequired,
     desc: PropTypes.string.isRequired,
@@ -99,6 +103,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   userFilterBy: (filterName, value, isActive) => {
     dispatch(filterBy(filterName, value, isActive));
+  },
+  userEnterVouchers: (subdestination) => {
+    dispatch(enterVouchers(subdestination));
   },
 });
 
