@@ -12,3 +12,7 @@ export const enterVouchers = (subdestination) => (dispatch, getState) => {
   dispatch(filterBy('subdestination', subdestination, true));
   dispatch(push(`${RouteTypes.VOUCHERS}/${activeDestination}/${subdestination}`));
 };
+
+export const enterTour = (id) => (dispatch) => {
+  dispatch(push(`${RouteTypes.TOUR}/${id}`));
+};

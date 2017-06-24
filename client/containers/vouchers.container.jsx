@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 
 import classNames from 'classnames';
 
-import { goToTour } from '../actions/route.actions.js';
+import { enterTour } from '../actions/navigation.actions.js';
 
 import { selectFilteredVouchers } from '../selectors/vouchers.selector.js';
 
 import vouchersDatasource from '../datasources/vouchers.datasource.jsx';
 
-import loader from '../hocs/loader.hoc.js';
+import loader from '../hocs/loader.hoc.jsx';
 
 import get from 'lodash/get';
 
@@ -58,7 +58,7 @@ class Vouchers extends Component {
   }
 
   render() {
-    const { isReady, head, body, userGoToTour } = this.props;
+    const { isReady, head, body, userEnterTour } = this.props;
     return (
       <section className="vouchers">
         {
@@ -80,7 +80,7 @@ class Vouchers extends Component {
                       (props) => (
                         <Cell
                           className={classNames('vouchers__cell', { active: !!body[props.rowIndex].description })}
-                          onClick={() => !!body[props.rowIndex].description && userGoToTour(body[props.rowIndex].description)}
+                          onClick={() => !!body[props.rowIndex].description && userEnterTour(body[props.rowIndex].description)}
                           { ...props }>
                           { ::this.createCellContent(colName, body[props.rowIndex][colName]) }
                         </Cell>
@@ -98,7 +98,7 @@ class Vouchers extends Component {
 }
 
 Vouchers.propTypes = {
-  userGoToTour: PropTypes.func.isRequired,
+  userEnterTour: PropTypes.func.isRequired,
   isReady: PropTypes.bool.isRequired,
   head: PropTypes.array,
   body: PropTypes.array,
@@ -112,8 +112,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userGoToTour: (id) => {
-    dispatch(goToTour(id));
+  userEnterTour: (id) => {
+    dispatch(enterTour(id));
   },
 });
 

@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
+import tourDatasource from '../datasources/tour.datasource.jsx';
+
 import Spinner from '../components/spinner.jsx';
 
 import get from 'lodash/get';
 
+@tourDatasource()
 class Tour extends Component {
   render() {
     const { isReady, content } = this.props;
