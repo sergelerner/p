@@ -56,14 +56,24 @@ const createFilter = (filterName, filterTypes, filterLists) => {
   const list = compact(reduce(filterLists, (acc, item) => {
     if (item[filterName]) {
       switch (filterName) {
+
         case 'destination': {
           const name = get(item, [filterName]);
           acc.push({
             name,
             desc: get(filter(filterLists, { destination: name }), [0, 'destination_desc']),
+            subdestinations: reduce(filterLists, (acc2, item2) => {
+              if (item2[name]) {
+                acc2.push({
+                  name: item2[name],
+                });
+              }
+              return acc2;
+            }, []),
           });
           break;
         }
+
         default:
           acc.push({
             name: get(item, [filterName]),
@@ -89,7 +99,7 @@ export default function (state = initialState, action) {
         basic,
         destination,
         subdestination,
-        destination2subdistination,
+        destination2subdestination,
       } = action;
 
       return u({
@@ -99,8 +109,17 @@ export default function (state = initialState, action) {
             supportedFilters,
             (filterName) => createFilter(
               filterName,
-              { ...pullAt(basic, [1]), ...pullAt(destination, [1]), ...pullAt(subdestination, [1]) },
-              [...drop(basic, [1]), ...drop(destination, [1]), ...drop(subdestination, [1])]
+              {
+                ...pullAt(basic, [1]),
+                ...pullAt(destination, [1]),
+                ...pullAt(subdestination, [1]),
+              },
+              [
+                ...drop(basic, [1]),
+                ...drop(destination, [1]),
+                ...drop(subdestination, [1]),
+                ...drop(destination2subdestination, [1]),
+              ]
             )
           ),
           'filterName'
