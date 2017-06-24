@@ -1,0 +1,97 @@
+.destinations-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @at-root #{&}__title {
+    font-size: 21px;
+    color: $color-a-2;
+    border-bottom: solid 1px $color-a-2;
+    background-color: $color-a-0;
+    margin-bottom: 20px;
+  }
+
+  @at-root #{&}__columns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @at-root #{&}__column {
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    @at-root #{&}--destinations {
+      flex: 1 0 calc(35% - 20px);
+    }
+
+    @at-root #{&}--subdestinations {
+      flex: 1 0 calc(40% - 20px);
+    }
+
+    @at-root #{&}--art {
+      flex: 1 0 25%;
+    }
+  }
+
+  @at-root #{&}__column-title {
+    color: $color-a-2;
+    font-weight: 400;
+    padding: 5px 15px;
+
+    border: solid 3px;
+
+    @at-root #{&}--destinations {
+      border-color: $color-a-7;
+    }
+
+    @at-root #{&}--subdestinations {
+      border-color: $color-a-6;
+    }
+  }
+
+  @at-root #{&}__item {
+    display: flex;
+    flex-direction: column;
+
+    margin: 10px 0;
+
+    @at-root #{&}--destinations {
+      @extend %button-blue;
+    }
+
+    @at-root #{&}--subdestinations {
+      @extend %button-green;
+    }
+
+    &.active {
+      @extend %button-green;
+    }
+  }
+
+  @at-root #{&}__name {
+
+    @at-root #{&}--destinations {
+      color: $color-a-2;
+      margin-bottom: 5px;
+    }
+
+    @at-root #{&}--subdestinations {
+      color: $color-a-5;
+    }
+  }
+
+  @at-root #{&}__desc {
+    font-size: 14px;
+    font-weight: 100;
+    color: $color-a-5;
+  }
+
+  @at-root #{&}__photo {
+    img {
+      width: 100%;
+    }
+  }
+}

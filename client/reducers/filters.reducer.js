@@ -102,28 +102,33 @@ export default function (state = initialState, action) {
         destination2subdestination,
       } = action;
 
+      const all = keyBy(
+        map(
+          supportedFilters,
+          (filterName) => createFilter(
+            filterName,
+            {
+              ...pullAt(basic, [1]),
+              ...pullAt(destination, [1]),
+              ...pullAt(subdestination, [1]),
+            },
+            [
+              ...drop(basic, [1]),
+              ...drop(destination, [1]),
+              ...drop(subdestination, [1]),
+              ...drop(destination2subdestination, [1]),
+            ]
+          )
+        ),
+        'filterName'
+      );
+
       return u({
         isReady: true,
-        all: keyBy(
-          map(
-            supportedFilters,
-            (filterName) => createFilter(
-              filterName,
-              {
-                ...pullAt(basic, [1]),
-                ...pullAt(destination, [1]),
-                ...pullAt(subdestination, [1]),
-              },
-              [
-                ...drop(basic, [1]),
-                ...drop(destination, [1]),
-                ...drop(subdestination, [1]),
-                ...drop(destination2subdestination, [1]),
-              ]
-            )
-          ),
-          'filterName'
-        ),
+        all,
+        active: {
+          destination: get(all, ['destination', 'list', 0, 'name']),
+        },
       }, state);
     }
 

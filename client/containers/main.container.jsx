@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+
+import * as RouteTypes from '../constants/route-types.js';
 
 import Deals from './deals.container.jsx';
 import Vouchers from './vouchers.container.jsx';
 import Filters from './filters.container.jsx';
+import DestinationNav from './destinations-nav.container.jsx';
 
 import SiteHeader from '../components/site-header.jsx';
 import HomeJumbotron from '../components/home-jumbotron.jsx';
@@ -15,10 +19,9 @@ class Main extends Component {
     return (
       <main className="main">
         <SiteHeader />
-        <HomeJumbotron />
-        <Deals />
-        <Filters />
-        <Vouchers />
+        <Route exact path={RouteTypes.ROOT} component={HomeJumbotron} />
+        <Route exact path={RouteTypes.ROOT} component={Deals} />
+        <Route path={RouteTypes.DESTINATIONS} component={DestinationNav} />
       </main>
     );
   }

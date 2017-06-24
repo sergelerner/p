@@ -1,20 +1,32 @@
+$deg: 183deg;
+$color-a-6-grad: linear-gradient(#{$deg}, #{$color-a-6} 0%, #{lighten($color-a-6, 20%)} 52%, #{$color-a-6} 100%);
+$color-a-6-grad-dark: linear-gradient(#{$deg}, #{$color-a-6} 0%, #{darken($color-a-6, 5%)} 52%,  #{$color-a-6} 100%);
+$color-a-7-grad: linear-gradient(#{$deg}, #{$color-a-7} 0%, rgba(255,255,255,1) 52%, #{$color-a-7} 100%);
+
+%base-button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 3px;
+}
+
 %button-green {
-  padding: 10px;
-  border-radius: 5px;
+  @extend %base-button;
+
   border-bottom: solid 2px #9FA88D;
-  background: linear-gradient(183deg, rgba(195,215,158,1) 0%,rgba(231,239,216,1) 52%,rgba(195,215,158,1) 100%);
+  background: $color-a-6-grad;
+
+  &:hover {
+    background: $color-a-6-grad-dark;
+  }
 }
 
 %button-blue {
-  $color-1: #BCCEE5;
-  $color-2: #D3E1B9;
+  @extend %base-button;
 
-  padding: 10px;
-  border-radius: 5px;
   border-bottom: solid 2px #8A98A9;
-  background: linear-gradient(to bottom, rgba(255,255,255,1) 30%, #{rgba($color-1, 1)} 100%);
+  background: $color-a-7-grad;
 
   &:hover {
-    background: linear-gradient(to bottom, rgba(255,255,255,1) 30%, #{rgba($color-2, 1)} 100%);
+    background: $color-a-6-grad;
   }
 }

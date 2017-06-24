@@ -21,31 +21,32 @@
   }
 
   @at-root #{&}__url {
-    $base-color: #E0E102;
+    $base-color: $color-a-0;
+    $base-color-darken: darken($base-color, 15%);
 
     padding: 10px 20px;
     margin-top: 30px;
 
     font-size: 21px;
     color: $color-a-2;
-    background-color: lighten($base-color, 10%);
+    background-color: $base-color;
 
     border-radius: 5px;
 
     box-shadow:
-      -1px -1px $base-color,
-      -2px -2px $base-color,
-      -3px -3px $base-color,
-      -4px -4px $base-color,
-      -5px -5px $base-color,
-      -6px -6px $base-color,
-      -7px -7px $base-color,
-      -8px -8px $base-color,
-      -9px -9px $base-color,
-      -10px -10px $base-color,
-      -11px -11px $base-color,
-      -12px -12px $base-color,
-      -13px -13px $base-color;
+      -1px -1px $base-color-darken,
+      -2px -2px $base-color-darken,
+      -3px -3px $base-color-darken,
+      -4px -4px $base-color-darken,
+      -5px -5px $base-color-darken,
+      -6px -6px $base-color-darken,
+      -7px -7px $base-color-darken,
+      -8px -8px $base-color-darken,
+      -9px -9px $base-color-darken,
+      -10px -10px $base-color-darken,
+      -11px -11px $base-color-darken,
+      -12px -12px $base-color-darken,
+      -13px -13px $base-color-darken;
   }
 
   @at-root #{&}__quote {
