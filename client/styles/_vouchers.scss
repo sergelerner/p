@@ -6,11 +6,30 @@
   align-items: center;
   justify-content: center;
 
+  .public_fixedDataTableCell_main {
+    background: transparent !important;
+    border-color: black;
+  }
+
+  .public_fixedDataTableRow_highlighted {
+    background-color: lighten($color-a-6, 10%) !important;
+  }
+
+  .public_fixedDataTableRow_main {
+    background-color: lighten($color-a-7, 10%);
+  }
+
   @at-root #{&}__head {
     text-align: center;
-    background: $color-a-1;
-    color: $color-a-3;
-    font-weight: 100;
+    background: darken($color-a-2, 10%);
+    color: $color-a-1;
+    font-weight: 400;
+  }
+
+  @at-root #{&}__column {
+    .odd {
+      background: $color-a-7;
+    }
   }
 
   @at-root #{&}__cell {
@@ -22,6 +41,11 @@
 
     .content {
       font-size: 14px;
+    }
+
+    .name {
+      color: $color-a-2;
+      font-weight: 400;
     }
 
     .price {
@@ -38,16 +62,12 @@
 
     .company {
 
-
       span:first-child {
         display: block;
-        color: $color-a-4;
+        color: $color-a-3;
         font-weight: bold;
 
         margin-bottom: 5px;
-      }
-      span:last-child {
-        color: $color-a-1;
       }
     }
   }

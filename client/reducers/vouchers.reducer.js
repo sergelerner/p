@@ -38,7 +38,7 @@ const createHead = (firstRow) => {
       width: 100,
     },
     notes: {
-      width: 300,
+      width: 200,
     },
   };
 
