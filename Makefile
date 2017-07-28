@@ -6,4 +6,4 @@ deploy:
 	git add .
 	git commit -m "Build"
 	git push
-	cd static && surge
+	cd static && cp ./index.html ./200.html && surge
