@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CnameWebpackPlugin = require('cname-webpack-plugin');
 
 const settingsLocal = require('./settings-local.json');
 
@@ -22,6 +23,9 @@ if (isDeploy && deployTarget === 'production') {
 console.log({ deployTarget, nodeEnv });
 
 const plugins = [
+  new CnameWebpackPlugin({
+    domain: 'lev-puteshestvennik.com',
+  }),
   new webpack.optimize.CommonsChunkPlugin({
     names: 'vendor',
     minChunks: Infinity,
