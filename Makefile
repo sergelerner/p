@@ -6,5 +6,4 @@ deploy:
 	git add .
 	git commit -m "Build"
 	git push
-	cd static
-	surge
+	cd static && surge
