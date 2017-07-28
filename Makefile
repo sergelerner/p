@@ -3,4 +3,4 @@ run:
 
 deploy:
 	yarn build
-	yarn delpoy
+	yarn deploy
