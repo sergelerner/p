@@ -7,8 +7,8 @@ class HomeJumbotron extends Component {
   render() {
     return (
       <article className="home-jumbotron">
-        <h3 className="home-jumbotron__first-title">Быстрый поиск нужного Вам тура по выбранным выше параметрам.</h3>
-        <h3 className="home-jumbotron__second-title">Все фирмы и их бонусы, все туры, все даты + наши скидки.</h3>
+        <h3 className="home-jumbotron__first-title">Быстрый поиск нужного Вам тура по выбранным выше параметрам</h3>
+        <h3 className="home-jumbotron__second-title">Все фирмы и их бонусы, все туры, все даты + наши скидки</h3>
         <div className="home-jumbotron__third-title">
           <img src={russianToursHeading}/>
         </div>
