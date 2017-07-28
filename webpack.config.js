@@ -6,24 +6,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const settingsLocal = require('./settings-local.json');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
-const isDeploy = (nodeEnv === 'production');
 const deployTarget = process.env.DEPLOY_TARGET;
+
+const isDeploy = (nodeEnv === 'production');
 
 const sourcePath = path.join(__dirname, './client');
 const staticsPath = path.join(__dirname, './static');
-const bucket = (deployTarget === 'STAGING_SITE_URL')
-  ? 'STAGING_SITE_BUCKET'
-  : 'PRODUCTION_SITE_BUCKET';
 
-var settings = settingsLocal;
-if (isDeploy) {
-  if (deployTarget === 'STAGING_SITE_URL') {
-    settings = require('./settings-stg.json');
-  } else if (deployTarget === 'PRODUCTION_SITE_URL') {
-    settings = require('./settings-prod.json');
-  } else {
-    throw "Unsupported deploy target: " + deployTarget;
-  }
+let settings = settingsLocal;
+
+if (isDeploy && deployTarget === 'production') {
+  settings = require('./settings-prod.json');
 }
 
 console.log({ deployTarget, nodeEnv });
