@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "rm -rf static && DEPLOY_TARGET=production NODE_ENV=production webpack -p",
-    "deploy": "git subtree push --prefix static origin gh-pages",
+    "deploy": "git subtree push --prefix static origin gh-pages"
   },
   "repository": {
     "type": "git",
