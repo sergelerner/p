@@ -6,4 +6,5 @@ deploy:
 	git add .
 	git commit -m "Build"
 	git push
-	yarn deploy
+	cd static
+	surge
