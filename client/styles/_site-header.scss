@@ -1,6 +1,18 @@
 .site-header {
   width: 100%;
 
+  @at-root #{&}__iata {
+    margin-bottom: 20px;
+    text-align: center;
+
+    .iata-text {
+      font-size: 13px;
+      background-color: $color-a-6;
+      display: inline-block;
+      padding: 5px 10px;
+    }
+  }
+
   @at-root #{&}__hat {
     display: flex;
     flex-direction: row;
