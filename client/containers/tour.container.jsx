@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 import tourDatasource from '../datasources/tour.datasource.jsx';
 
-import Spinner from '../components/spinner.jsx';
+import TourDescrition from '../components/tour-description.jsx';
 
 import get from 'lodash/get';
 
@@ -15,10 +15,7 @@ class Tour extends Component {
     const { isReady, content } = this.props;
     return (
       <main className={classNames('tour', { loading: !isReady })}>
-        {
-          (!isReady) && <Spinner />
-        }
-        <div dangerouslySetInnerHTML={{ __html: content }}></div>
+        <TourDescrition isReady={isReady} content={content} />
       </main>
     );
   }
