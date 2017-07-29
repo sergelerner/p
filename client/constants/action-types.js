@@ -6,3 +6,5 @@ export const TOGGLE_FILTER = 'TOGGLE_FILTER';
 
 export const LOAD_TOUR = 'LOAD_TOUR';
 export const VIEW_TOUR = 'VIEW_TOUR';
+
+export const SET_ACTIVE_VOUCHER = 'SET_ACTIVE_VOUCHER';

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
+
+import { selectActiveVoucher } from '../selectors/vouchers.selector.js';
 
 import tourDatasource from '../datasources/tour.datasource.jsx';
 
@@ -14,8 +15,18 @@ class Tour extends Component {
   render() {
     const { isReady, content } = this.props;
     return (
-      <main className={classNames('tour', { loading: !isReady })}>
-        <TourDescrition isReady={isReady} content={content} />
+      <main className="tour">
+
+        <header className="tour__header">
+          <h1 className="tour-header-title">Русскоязычные туры от  Каспи- Метрополь, Натур, Офир, Эшет, Аркия, Мон</h1>
+          <h3 className="tour-header-company-extra-info"></h3>
+        </header>
+
+        <section className="tour__description">
+          <h2 className="tour__company">Организованный тур от_____</h2>
+          <TourDescrition isReady={isReady} content={content} />
+        </section>
+
       </main>
     );
   }
@@ -29,6 +40,7 @@ Tour.propTypes = {
 const mapStateToProps = (state) => ({
   content: get(state, ['tours', 'content']),
   isReady: get(state, ['tours', 'isReady']),
+  activeVoucher: selectActiveVoucher(state),
 });
 
 export default connect(mapStateToProps)(Tour);

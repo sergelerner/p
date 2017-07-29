@@ -80,6 +80,14 @@ export default function (state = initialState, action) {
       }, state);
     }
 
+    case actionTypes.SET_ACTIVE_VOUCHER: {
+      const { voucherId } = action;
+
+      return u({
+        activeVoucherId: voucherId,
+      }, state);
+    }
+
     default:
       return state;
   }

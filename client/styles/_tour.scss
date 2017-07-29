@@ -1,13 +1,21 @@
 .tour {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  padding: 100px 200px;
+  padding: 20px;
 
-  &.loading {
-    height: 100vh;
+  @at-root #{&}__header {
+    background: $color-a-7;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    .tour-header-title {
+      font-size: 14px;
+      color: $color-a-2;
+      font-weight: bold;
+    }
+  }
+
+  @at-root #{&}__description {
+    max-width: 800px;
   }
 }

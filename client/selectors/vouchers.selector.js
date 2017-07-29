@@ -1,10 +1,13 @@
 import { createSelector } from 'reselect';
 import moment from 'moment';
+
 import get from 'lodash/get';
 import filter from 'lodash/filter';
+import find from 'lodash/find';
 
 const selectAllVouchers = (state) => get(state, ['vouchers', 'all']);
 const selectActiveFilters = (state) => get(state, ['filters', 'active']);
+const selectActiveVoucherId = (state) => get(state, ['vouchers', 'activeVoucherId']);
 
 export const selectFilteredVouchers = createSelector(
   [selectAllVouchers, selectActiveFilters],
@@ -25,5 +28,14 @@ export const selectFilteredVouchers = createSelector(
     }));
 
     return body;
+  }
+);
+
+export const selectActiveVoucher = createSelector(
+  [selectAllVouchers, selectActiveVoucherId],
+  (allVouchers, activeVoucherId) => {
+    const activeVoucher = find(allVouchers, { voucherId: activeVoucherId });
+
+    return activeVoucher;
   }
 );
