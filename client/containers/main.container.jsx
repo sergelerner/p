@@ -20,7 +20,7 @@ class Main extends Component {
       <main className="main">
         <SiteHeader />
         <Route exact path={RouteTypes.ROOT} component={HomeJumbotron} />
-        <Route exact path={RouteTypes.ROOT} component={Deals} />
+        {/* <Route exact path={RouteTypes.ROOT} component={Deals} /> */}
         <Route path={RouteTypes.DESTINATIONS} component={DestinationNav} />
         <Route exact path={`${RouteTypes.VOUCHERS}/:destination/:subdestination`} component={Vouchers} />
       </main>
