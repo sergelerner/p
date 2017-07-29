@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { loadDoc } from '../actions/drive.actions.js';
+import { loadSheet, loadDoc } from '../actions/drive.actions.js';
 
 import get from 'lodash/get';
 
@@ -10,14 +10,24 @@ export default () => (WrappedComponent) => {
   class TourDatasource extends Component {
     componentWillMount() {
       const {
+        hasVouchers,
+        clientLoadSheet,
         clientLoadDoc,
         match,
       } = this.props;
 
       const { voucherId } = get(match, ['params']);
 
-      if (voucherId) {
-        clientLoadDoc(voucherId);
+      if (!hasVouchers) {
+        clientLoadSheet().then(() => {
+          if (voucherId) {
+            clientLoadDoc(voucherId);
+          }
+        });
+      } else {
+        if (voucherId) {
+          clientLoadDoc(voucherId);
+        }
       }
     }
 
@@ -27,15 +37,18 @@ export default () => (WrappedComponent) => {
   }
 
   TourDatasource.propTypes = {
+    hasVouchers: PropTypes.bool.isRequired,
+    clientLoadSheet: PropTypes.func.isRequired,
     clientLoadDoc: PropTypes.func.isRequired,
     match: PropTypes.object.isRequired,
   };
 
-  const mapStateToProps = (_state) => ({
-
+  const mapStateToProps = (state) => ({
+    hasVouchers: get(state, ['vouchers', 'isReady']),
   });
 
   const mapDispatchToProps = (dispatch) => ({
+    clientLoadSheet: () => dispatch(loadSheet()),
     clientLoadDoc: (voucherId) => {
       dispatch(loadDoc(voucherId));
     },

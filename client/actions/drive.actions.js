@@ -5,8 +5,7 @@ import * as TableTypes from '../constants/table-types.js';
 
 import get from 'lodash/get';
 
-export const loadSheet = () => (dispatch) => {
-
+export const loadSheet = () => (dispatch) => new Promise((resolve) => {
   const key = process.env.SETTINGS.sheetKey;
 
   Tabletop.init({
@@ -31,11 +30,13 @@ export const loadSheet = () => (dispatch) => {
         subdestination: get(result, [TableTypes.SUBDESTINATION, 'elements']),
         destination2subdestination: get(result, [TableTypes.DESTINATION2SUBDESTINATION, 'elements']),
       });
+
+      resolve();
     },
   });
-};
+});
 
-export const loadDoc = (id) => (dispatch) => {
+export const loadDoc = (id) => (dispatch) => new Promise((resolve) => {
   const docPath = `https://docs.google.com/feeds/download/documents/export/Export?id=${id}&exportFormat=html`;
 
   dispatch({
@@ -50,5 +51,7 @@ export const loadDoc = (id) => (dispatch) => {
         id,
         result,
       });
+
+      resolve();
     });
-};
+});
