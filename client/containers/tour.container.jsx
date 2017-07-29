@@ -13,13 +13,19 @@ import get from 'lodash/get';
 @tourDatasource()
 class Tour extends Component {
   render() {
-    const { isReady, content } = this.props;
+    const {
+      isReady,
+      content,
+      activeVoucher: { extraInfo: { first: extraInfoFirst, second: extraInfoSecond } },
+    } = this.props;
+
     return (
       <main className="tour">
 
         <header className="tour__header">
           <h1 className="tour-header-title">Русскоязычные туры от  Каспи- Метрополь, Натур, Офир, Эшет, Аркия, Мон</h1>
-          <h3 className="tour-header-company-extra-info"></h3>
+          <h3 className="tour-header-company-extra-info-first">{extraInfoFirst}</h3>
+          <h3 className="tour-header-company-extra-info-second">{extraInfoSecond}</h3>
         </header>
 
         <section className="tour__description">
@@ -35,6 +41,13 @@ class Tour extends Component {
 Tour.propTypes = {
   content: PropTypes.string,
   isReady: PropTypes.bool.isRequired,
+  activeVoucher: PropTypes.shape({
+    company: PropTypes.string.isRequired,
+    extraInfo: PropTypes.shape({
+      first: PropTypes.string,
+      second: PropTypes.string,
+    }),
+  }),
 };
 
 const mapStateToProps = (state) => ({

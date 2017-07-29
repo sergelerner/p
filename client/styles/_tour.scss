@@ -7,11 +7,21 @@
 
   @at-root #{&}__header {
     background: $color-a-7;
+    text-align: center;
 
     .tour-header-title {
       font-size: 14px;
       color: $color-a-2;
       font-weight: bold;
+    }
+
+    .tour-header-company-extra-info-first {
+      font-size: 12px;
+    }
+
+    .tour-header-company-extra-info-second {
+      font-size: 12px;
+      color: $color-a-2;
     }
   }
 
