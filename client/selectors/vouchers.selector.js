@@ -12,9 +12,9 @@ export const selectFilteredVouchers = createSelector(
     const filteredVouchers = filter(allVouchers, activeFilters);
 
     const rangeDate = (departure, arrival) => {
-      const d = moment(departure, 'DD/MM/YYYY').format('DD-MM');
-      const a = moment(arrival, 'DD/MM/YYYY').format('DD-MM');
-      return `${d} / ${a}`;
+      const d = moment(departure, 'DD/MM/YYYY').format('DD.MM');
+      const a = moment(arrival, 'DD/MM/YYYY').format('DD.MM');
+      return `${d} - ${a}`;
     };
 
     const body = filteredVouchers.map((row) => ({
