@@ -24,7 +24,7 @@ ReactDOM.render(
         <Route exact path={RouteTypes.ROOT} component={Main} />
         <Route path={RouteTypes.DESTINATIONS} component={Main} />
         <Route path={RouteTypes.VOUCHERS} component={Main} />
-        <Route path={`${RouteTypes.TOUR}/:tourId`} component={Tour} />
+        <Route path={`${RouteTypes.TOUR}/:voucherId`} component={Tour} />
       </Switch>
     </ConnectedRouter>
   </Provider>

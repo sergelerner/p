@@ -79,8 +79,8 @@ class Vouchers extends Component {
                     cell={
                       (props) => (
                         <Cell
-                          className={classNames('vouchers__cell', { active: !!body[props.rowIndex].description })}
-                          onClick={() => !!body[props.rowIndex].description && userEnterTour(body[props.rowIndex].description)}
+                          className={classNames('vouchers__cell', { active: !!body[props.rowIndex].voucherId })}
+                          onClick={() => !!body[props.rowIndex].voucherId && userEnterTour(body[props.rowIndex].voucherId)}
                           { ...props }>
                           { ::this.createCellContent(colName, body[props.rowIndex][colName]) }
                         </Cell>
@@ -112,8 +112,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userEnterTour: (id) => {
-    dispatch(enterTour(id));
+  userEnterTour: (voucherId) => {
+    dispatch(enterTour(voucherId));
   },
 });
 

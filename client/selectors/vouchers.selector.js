@@ -22,7 +22,6 @@ export const selectFilteredVouchers = createSelector(
       departure: rangeDate(row.departure, row.arrival),
       price: row.price + row.coin + '|' + (row.price - row.discount) + row.coin,
       company: row.company + ' | ' + row.guide,
-      description: row.description.split('=')[1],
     }));
 
     return body;

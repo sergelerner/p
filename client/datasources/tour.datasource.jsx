@@ -14,10 +14,10 @@ export default () => (WrappedComponent) => {
         match,
       } = this.props;
 
-      const { tourId } = get(match, ['params']);
+      const { voucherId } = get(match, ['params']);
 
-      if (tourId) {
-        clientLoadDoc(tourId);
+      if (voucherId) {
+        clientLoadDoc(voucherId);
       }
     }
 
@@ -36,8 +36,8 @@ export default () => (WrappedComponent) => {
   });
 
   const mapDispatchToProps = (dispatch) => ({
-    clientLoadDoc: (tourId) => {
-      dispatch(loadDoc(tourId));
+    clientLoadDoc: (voucherId) => {
+      dispatch(loadDoc(voucherId));
     },
   });
 

@@ -56,6 +56,12 @@ const createHead = (firstRow) => {
   return sorrtedHead;
 };
 
+const createAll = (otherRows) => map(otherRows, (row) => ({
+  ...row,
+  description: undefined,
+  voucherId: row.description.split('=')[1],
+}));
+
 export default function (state = initialState, action) {
   switch (action.type) {
 
@@ -63,11 +69,13 @@ export default function (state = initialState, action) {
       const { vouchersRaw } = action;
       const firstRow = pullAt(vouchersRaw, [1]);
       const otherRows = drop(vouchersRaw, [1]);
+
       const head = createHead(firstRow);
+      const all = createAll(otherRows);
 
       return u({
         isReady: true,
-        all: otherRows,
+        all,
         head,
       }, state);
     }
