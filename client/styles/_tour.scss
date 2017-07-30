@@ -1,3 +1,9 @@
+%clear-css {
+  padding: 0;
+  text-align: inherit;
+  line-height: 1.5;
+}
+
 .tour {
   display: flex;
   flex-direction: column;
@@ -6,26 +12,57 @@
   padding: 20px;
 
   @at-root #{&}__header {
-    background: $color-a-7;
+    background: $color-a-1;
     text-align: center;
-
-    .tour-header-title {
-      font-size: 14px;
-      color: $color-a-2;
-      font-weight: bold;
-    }
-
-    .tour-header-company-extra-info-first {
-      font-size: 12px;
-    }
-
-    .tour-header-company-extra-info-second {
-      font-size: 12px;
-      color: $color-a-2;
-    }
   }
 
   @at-root #{&}__description {
     max-width: 800px;
+  }
+}
+
+.tour-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 20px;
+
+  @at-root #{&}__btn {
+    flex: 0 0 auto;
+  }
+
+  @at-root #{&}__content {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 800px;
+
+    .tour-header-title {
+      @extend %clear-css;
+
+      font-size: 16px;
+      color: $color-a-8;
+      font-weight: bold;
+    }
+
+    .tour-header-company-extra-info-first {
+      @extend %clear-css;
+      font-size: 12px;
+    }
+
+    .tour-header-company-extra-info-second {
+      @extend %clear-css;
+      font-size: 12px;
+      color: $color-a-8;
+    }
+  }
+
+  @at-root #{&}__logo {
+    flex: 0 0 auto;
+
+    img {
+      width: 91px;
+    }
   }
 }

@@ -8,6 +8,8 @@ import tourDatasource from '../datasources/tour.datasource.jsx';
 
 import TourDescrition from '../components/tour-description.jsx';
 
+import levLogo from '../assets/photos/lev-logo.png';
+
 import get from 'lodash/get';
 
 @tourDatasource()
@@ -23,9 +25,19 @@ class Tour extends Component {
       <main className="tour">
 
         <header className="tour__header">
-          <h1 className="tour-header-title">Русскоязычные туры от  Каспи- Метрополь, Натур, Офир, Эшет, Аркия, Мон</h1>
-          <h3 className="tour-header-company-extra-info-first">{extraInfoFirst}</h3>
-          <h3 className="tour-header-company-extra-info-second">{extraInfoSecond}</h3>
+          <div className="tour-header">
+            <div className="tour-header__btn">
+              <button>Вернуться</button>
+            </div>
+            <div className="tour-header__content">
+              <h1 className="tour-header-title">Русскоязычные туры от  Каспи- Метрополь, Натур, Офир, Эшет, Аркия, Мон</h1>
+              <h3 className="tour-header-company-extra-info-first">{extraInfoFirst}</h3>
+              <h3 className="tour-header-company-extra-info-second">{extraInfoSecond}</h3>
+            </div>
+            <div className="tour-header__logo">
+              <img src={levLogo} />
+            </div>
+          </div>
         </header>
 
         <section className="tour__description">

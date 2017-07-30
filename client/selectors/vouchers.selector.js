@@ -38,7 +38,7 @@ export const selectActiveVoucher = createSelector(
     const company = get(activeVoucher, ['company']);
 
     return {
-      companyName: company,
+      company,
       extraInfo: getExtraInfo(company),
     };
   }
