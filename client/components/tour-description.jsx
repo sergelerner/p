@@ -9,7 +9,7 @@ class TourDescrition extends Component {
 
     return (!isReady)
       ? <Spinner />
-      : <div dangerouslySetInnerHTML={{ __html: content }}></div>;
+      : <div className="tour-description" dangerouslySetInnerHTML={{ __html: content }}></div>;
   }
 }
 

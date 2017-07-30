@@ -12,12 +12,38 @@
   padding: 20px;
 
   @at-root #{&}__header {
+    width: 100%;
     background: $color-a-1;
     text-align: center;
   }
 
   @at-root #{&}__description {
-    max-width: 800px;
+
+    .tour-description {
+      padding: 20px 50px;
+    }
+  }
+
+  @at-root #{&}__company {
+    @extend %clear-css;
+    width: 100%;
+    margin-bottom: 20px;
+
+    text-align: center;
+    background: $color-a-0;
+    color: $color-a-8;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  @at-root #{&}__additional-details {
+    h4 {
+      color: $color-a-8;
+    }
+
+    i {
+      font-style: italic;
+    }
   }
 }
 
@@ -63,6 +89,61 @@
 
     img {
       width: 91px;
+    }
+  }
+}
+
+.tour-order {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0;
+
+  @at-root #{&}__title {
+    background: $color-a-9;
+    color: $color-a-1;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 5px 20px;
+  }
+
+  @at-root #{&}__btn {
+    @extend %button-order;
+  }
+
+  @at-root #{&}__desc {
+    text-align: center;
+    strong {
+      color: $color-a-8;
+    }
+  }
+
+  @at-root #{&}__salute {
+    @extend %clear-css;
+
+    font-size: 16px;
+    margin: 5px;
+    color: $color-a-8;
+    font-weight: bold;
+  }
+
+  @at-root #{&}__contact-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    font-size: 16px;
+    color: $color-a-8;
+    font-weight: bold;
+
+    .phone, .email{
+      @extend %clear-css;
+      @extend %button-green;
+      padding: 5px 10px;
+      border-radius: 3px;
+      color: inherit;
+      font-size: inherit;
     }
   }
 }

@@ -18,11 +18,14 @@ class Tour extends Component {
     const {
       isReady,
       content,
-      activeVoucher: { extraInfo: { first: extraInfoFirst, second: extraInfoSecond } },
+      activeVoucher: {
+        company: companyName,
+        extraInfo: { first: extraInfoFirst, second: extraInfoSecond },
+      },
     } = this.props;
 
     return (
-      <main className="tour">
+      <main className="main tour">
 
         <header className="tour__header">
           <div className="tour-header">
@@ -41,8 +44,38 @@ class Tour extends Component {
         </header>
 
         <section className="tour__description">
-          <h2 className="tour__company">Организованный тур от_____</h2>
+          <h2 className="tour__company">{`Организованный тур от ${companyName}:`}</h2>
           <TourDescrition isReady={isReady} content={content} />
+
+          <div className="tour__additional-details">
+            <i>*Возможны изменения в порядке посещений</i>
+            <div>
+              <h4>В стоимость включено:</h4>
+              <ul>
+                <li>-авиационные и прочие налоги и сборы по состоянию на 20.05.2017.</li>
+                <li>-комфортабельный туристический автобус в соответствии с программой;</li>
+                <li>-чаевые для обслуживающего персонала (не включая чаевые гиду группы).</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Опции (Цены даны в евро):</h4>
+              <p>Аттракции, предлагаемые туристам в свободное время. Передвижение на общественном транспорте. Личную  страховку. Все, что не внесено в пункт "цена тура включает". Городской налог оплачивается самостоятельно в гостинице.</p>
+            </div>
+          </div>
+
+          <div className="tour__order">
+            <div className="tour-order">
+              <h5 className="tour-order__title">Для перехода к бронированию тура на выбранную Вами дату нажмите:</h5>
+              <button className="tour-order__btn">Заявка</button>
+              <p className="tour-order__desc">В бланке <strong>Заявка</strong> Вы заполняете только Ваши контактные данные. Окончательное оформление заказа после консультации с нашим представителем по телефону, предоплате  и нашему письменному подтверждению цены и наличию мест.</p>
+              <h3 className="tour-order__salute">С уважением, Ваш и в дальнейшем, Лев Путешественник</h3>
+              <div className="tour-order__contact-info">
+                <h4 className="phone">03-6026443</h4>
+                <h1 className="email">lev.put@gmail.com</h1>
+                <h4 className="phone">054-4534590</h4>
+              </div>
+            </div>
+          </div>
         </section>
 
       </main>

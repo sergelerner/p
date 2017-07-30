@@ -30,3 +30,36 @@ $color-a-7-grad: linear-gradient(#{$deg}, #{$color-a-7} 0%, rgba(255,255,255,1) 
     background: $color-a-6-grad;
   }
 }
+
+%button-order {
+  $base-color: $color-a-8;
+  background: $color-a-7;
+  color: $color-a-8;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 20px;
+  cursor: pointer;
+
+  margin: 20px 0 10px;
+
+  box-shadow:
+    1px -1px $base-color,
+    2px -2px $base-color,
+    3px -3px $base-color,
+    4px -4px $base-color,
+    5px -5px $base-color,
+    6px -6px $base-color;
+
+  &:hover {
+    position: relative;
+    top: -3px;
+    right: -3px;
+
+    box-shadow:
+      1px -1px $base-color,
+      2px -2px $base-color,
+      3px -3px $base-color;
+  }
+}
