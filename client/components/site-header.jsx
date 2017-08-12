@@ -19,7 +19,7 @@ class SiteHeader extends Component {
             <img src={levPhoto} />
           </div>
           <div className="site-header__title-block">
-            <h2 className="site-header__url">www.lev-puteshestvennik.co.il</h2>
+            <h2 className="site-header__url">www.lev-puteshestvennik.com</h2>
             <h3 className="site-header__quote">- Весь мир у Вас на ладони -</h3>
           </div>
           <div className="site-header__photo">
